@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codara — Brandbook &amp; Manual Institucional</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z' fill='%236C3CE1'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --violet:#6C3CE1;--violet-dark:#5429B5;--violet-light:#9B7AE8;--violet-wash:#E8E0F7;
+  --night:#0F0F1A;--charcoal:#2A2A3A;--snow:#F8F8FC;--white:#FFFFFF;
+  --gray-100:#F8F8FC;--gray-200:#EDEDF5;--gray-300:#D4D4E0;--gray-400:#9999AA;--gray-600:#555566;
+  --success:#22C55E;--warning:#F59E0B;--error:#EF4444;--info:#3B82F6;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--white);color:var(--night);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* Sidebar Navigation */
+.sidebar{position:fixed;top:0;left:0;width:260px;height:100vh;background:var(--night);color:var(--white);padding:32px 0;overflow-y:auto;z-index:100;transition:transform .3s}
+.sidebar-logo{display:flex;align-items:center;gap:12px;padding:0 24px;margin-bottom:40px}
+.sidebar-logo svg{width:32px;height:32px;flex-shrink:0}
+.sidebar-logo span{font-weight:700;font-size:18px;letter-spacing:-0.02em}
+.sidebar-nav{list-style:none}
+.sidebar-nav li{margin:0}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:10px 24px;color:var(--gray-400);text-decoration:none;font-size:13px;font-weight:500;transition:all .2s;border-left:3px solid transparent}
+.sidebar-nav a:hover,.sidebar-nav a.active{color:var(--white);background:rgba(108,60,225,0.1);border-left-color:var(--violet)}
+.sidebar-nav .section-label{padding:10px 24px 6px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-400);margin-top:16px}
+.sidebar-nav .section-label:first-child{margin-top:0}
+
+/* Main Content */
+.main{margin-left:260px;min-height:100vh}
+.page-section{padding:80px 60px;border-bottom:1px solid var(--gray-200)}
+.page-section:last-child{border-bottom:none}
+.container{max-width:960px;margin:0 auto}
+
+/* Typography */
+.section-number{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--violet);margin-bottom:8px}
+.section-title{font-size:40px;font-weight:800;letter-spacing:-0.03em;line-height:1.15;color:var(--night);margin-bottom:16px}
+.section-subtitle{font-size:18px;color:var(--gray-600);line-height:1.6;margin-bottom:48px;max-width:640px}
+h3{font-size:22px;font-weight:700;letter-spacing:-0.02em;margin-bottom:12px;color:var(--night)}
+h4{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--night)}
+p{font-size:15px;line-height:1.8;color:var(--charcoal);margin-bottom:20px}
+
+/* Cover */
+.cover{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--night);color:var(--white);text-align:center;padding:60px}
+.cover-badge{display:inline-block;padding:6px 18px;border:1px solid rgba(255,255,255,0.15);border-radius:100px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--violet-light);margin-bottom:32px}
+.cover h1{font-size:56px;font-weight:800;letter-spacing:-0.04em;line-height:1.1;margin-bottom:16px}
+.cover h1 span{color:var(--violet)}
+.cover p{color:rgba(255,255,255,0.5);font-size:16px;max-width:500px;margin:0 auto 40px}
+.cover-symbol{margin-bottom:40px}
+.cover-meta{font-size:12px;color:rgba(255,255,255,0.25);margin-top:40px}
+
+/* Cards Grid */
+.cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:32px 0}
+.card{background:var(--snow);border:1px solid var(--gray-200);border-radius:12px;padding:28px;transition:all .2s}
+.card:hover{border-color:var(--violet-wash);box-shadow:0 4px 20px rgba(108,60,225,0.08)}
+.card-icon{width:40px;height:40px;background:var(--violet-wash);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px}
+.card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.card p{font-size:13px;color:var(--gray-600);margin-bottom:0;line-height:1.6}
+
+/* Logo Display */
+.logo-showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:32px 0}
+.logo-box{border:1px solid var(--gray-200);border-radius:12px;padding:40px 24px;display:flex;align-items:center;justify-content:center;min-height:160px;position:relative}
+.logo-box.dark{background:var(--night);border-color:transparent}
+.logo-box.mono{background:var(--white)}
+.logo-box-label{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:11px;font-weight:500;color:var(--gray-400)}
+.logo-box.dark .logo-box-label{color:rgba(255,255,255,0.3)}
+
+/* Symbol Grid */
+.symbol-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:32px 0}
+.symbol-box{border:1px solid var(--gray-200);border-radius:12px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:140px}
+.symbol-box.dark{background:var(--night);border-color:transparent}
+.symbol-box.icon{background:var(--violet);border-color:transparent;border-radius:20px}
+.symbol-box span{font-size:11px;font-weight:500;color:var(--gray-400)}
+.symbol-box.dark span,.symbol-box.icon span{color:rgba(255,255,255,0.4)}
+
+/* Color Palette */
+.color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:32px 0}
+.color-swatch{border-radius:12px;overflow:hidden;border:1px solid var(--gray-200)}
+.color-swatch-preview{height:100px;position:relative}
+.color-swatch-info{padding:14px 16px}
+.color-swatch-name{font-size:13px;font-weight:600;color:var(--night);margin-bottom:2px}
+.color-swatch-hex{font-size:12px;color:var(--gray-400);font-family:'SF Mono','Fira Code',monospace}
+.color-swatch-rgb{font-size:11px;color:var(--gray-400);font-family:'SF Mono','Fira Code',monospace}
+
+/* Typography Samples */
+.type-sample{border:1px solid var(--gray-200);border-radius:12px;padding:28px;margin:12px 0}
+.type-sample-label{font-size:11px;font-weight:600;color:var(--violet);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+.type-sample-text{color:var(--night)}
+
+/* Table */
+.brand-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.brand-table th{text-align:left;padding:12px 16px;background:var(--snow);border:1px solid var(--gray-200);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-600)}
+.brand-table td{padding:12px 16px;border:1px solid var(--gray-200);color:var(--charcoal);line-height:1.6}
+.brand-table tr:hover td{background:rgba(108,60,225,0.02)}
+
+/* Do/Don't */
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:32px 0}
+.do-box,.dont-box{border-radius:12px;padding:24px;border:1px solid}
+.do-box{border-color:var(--success);background:rgba(34,197,94,0.04)}
+.dont-box{border-color:var(--error);background:rgba(239,68,68,0.04)}
+.do-box h4,.dont-box h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px}
+.do-box h4{color:var(--success)}
+.dont-box h4{color:var(--error)}
+.do-box li,.dont-box li{font-size:13px;line-height:1.8;color:var(--charcoal)}
+
+/* Blockquote */
+.brand-quote{border-left:3px solid var(--violet);padding:20px 24px;background:var(--snow);border-radius:0 8px 8px 0;margin:24px 0;font-size:15px;color:var(--charcoal);font-style:italic}
+
+/* Clear Space Diagram */
+.clearspace-demo{background:var(--snow);border:1px solid var(--gray-200);border-radius:12px;padding:48px;display:flex;align-items:center;justify-content:center;margin:32px 0;position:relative}
+.clearspace-inner{border:2px dashed var(--violet-light);padding:40px 60px;position:relative}
+.clearspace-label{position:absolute;font-size:11px;font-weight:600;color:var(--violet)}
+.clearspace-label.top{top:-20px;left:50%;transform:translateX(-50%)}
+.clearspace-label.right{right:-30px;top:50%;transform:translateY(-50%)}
+.clearspace-label.bottom{bottom:-20px;left:50%;transform:translateX(-50%)}
+.clearspace-label.left{left:-30px;top:50%;transform:translateY(-50%)}
+
+/* Misuse Grid */
+.misuse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+.misuse-box{border:1px solid var(--gray-200);border-radius:12px;padding:24px;text-align:center;position:relative}
+.misuse-box::after{content:'✕';position:absolute;top:12px;right:14px;color:var(--error);font-weight:700;font-size:16px}
+.misuse-box p{font-size:12px;color:var(--error);margin:12px 0 0;font-weight:500}
+
+/* Buttons Demo */
+.btn-demo{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.btn-primary{background:var(--violet);color:var(--white);border-color:var(--violet)}
+.btn-primary:hover{background:var(--violet-dark);border-color:var(--violet-dark)}
+.btn-secondary{background:var(--white);color:var(--violet);border-color:var(--violet)}
+.btn-secondary:hover{background:var(--violet-wash)}
+.btn-ghost{background:transparent;color:var(--charcoal);border-color:var(--gray-300)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.btn-disabled{background:var(--snow);color:var(--gray-400);border-color:var(--gray-200);cursor:not-allowed}
+
+/* Form Demo */
+.form-demo{max-width:400px;margin:24px 0}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:13px;font-weight:500;color:var(--charcoal);margin-bottom:6px}
+.form-input{width:100%;padding:10px 14px;border:1.5px solid var(--gray-300);border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;color:var(--night);transition:all .2s;background:var(--white)}
+.form-input:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(108,60,225,0.12)}
+.form-input.error{border-color:var(--error)}
+.form-hint{font-size:12px;color:var(--gray-400);margin-top:4px}
+.form-hint.error{color:var(--error)}
+
+/* Card Component Demo */
+.card-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+.ui-card{background:var(--white);border:1px solid var(--gray-200);border-radius:12px;padding:24px;transition:all .2s}
+.ui-card:hover{border-color:var(--violet-wash);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.ui-card-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;margin-bottom:12px}
+.ui-card-badge.active{background:rgba(34,197,94,0.1);color:var(--success)}
+.ui-card-badge.draft{background:var(--violet-wash);color:var(--violet)}
+.ui-card h4{font-size:15px;margin-bottom:6px}
+.ui-card p{font-size:13px;color:var(--gray-600);margin:0}
+
+/* Nav Demo */
+.nav-demo{background:var(--night);border-radius:12px;padding:16px;width:220px;margin:24px 0}
+.nav-demo-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500;color:var(--gray-400);margin:2px 0;transition:all .2s;cursor:pointer}
+.nav-demo-item:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.nav-demo-item.active{color:var(--white);background:rgba(108,60,225,0.2)}
+.nav-demo-item .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+.nav-demo-item.active .dot{background:var(--violet)}
+
+/* Application Mockups */
+.mockup-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:32px 0}
+.mockup{border:1px solid var(--gray-200);border-radius:12px;overflow:hidden}
+.mockup-header{background:var(--snow);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--gray-200)}
+.mockup-dot{width:8px;height:8px;border-radius:50%}
+.mockup-body{padding:32px;display:flex;align-items:center;justify-content:center;min-height:180px}
+.mockup-label{text-align:center;font-size:12px;color:var(--gray-400);margin-top:12px;font-weight:500}
+
+/* Spacing */
+.spacing-demo{display:flex;gap:12px;align-items:flex-end;margin:24px 0}
+.spacing-block{background:var(--violet-wash);border:1px solid var(--violet-light);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--violet)}
+
+/* Responsive */
+.mobile-nav{display:none;position:fixed;top:0;left:0;right:0;height:56px;background:var(--night);z-index:101;align-items:center;padding:0 16px;justify-content:space-between}
+.mobile-nav svg{width:24px;height:24px}
+.mobile-nav span{font-weight:700;font-size:16px;color:var(--white)}
+.hamburger{background:none;border:none;color:var(--white);font-size:24px;cursor:pointer;padding:4px}
+
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .mobile-nav{display:flex}
+  .main{margin-left:0;padding-top:56px}
+  .page-section{padding:48px 24px}
+  .section-title{font-size:28px}
+  .logo-showcase{grid-template-columns:1fr}
+  .symbol-grid{grid-template-columns:repeat(2,1fr)}
+  .color-grid{grid-template-columns:repeat(2,1fr)}
+  .cards-grid{grid-template-columns:1fr}
+  .do-dont{grid-template-columns:1fr}
+  .misuse-grid{grid-template-columns:1fr}
+  .mockup-grid{grid-template-columns:1fr}
+  .card-demo{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav">
+  <button class="hamburger" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+  <span>Codara Brandbook</span>
+  <svg viewBox="0 0 100 100" width="28" height="28"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></svg>
+</div>
+
+<!-- Sidebar -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 100 100"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></svg>
+    <span>Codara</span>
+  </div>
+  <ul class="sidebar-nav">
+    <li class="section-label">Capa</li>
+    <li><a href="#cover" class="active">Capa do Manual</a></li>
+    
+    <li class="section-label">Fundacao</li>
+    <li><a href="#mission">Missao e Visao</a></li>
+    <li><a href="#values">Valores da Marca</a></li>
+    <li><a href="#personality">Personalidade</a></li>
+    
+    <li class="section-label">Identidade Visual</li>
+    <li><a href="#logo">Logomarca</a></li>
+    <li><a href="#symbol">Simbolo e Icone</a></li>
+    <li><a href="#clearspace">Area de Protecao</a></li>
+    <li><a href="#misuse">Usos Incorretos</a></li>
+    <li><a href="#colors">Paleta de Cores</a></li>
+    <li><a href="#typography">Tipografia</a></li>
+    
+    <li class="section-label">Comunicacao</li>
+    <li><a href="#voice">Tom de Voz</a></li>
+    <li><a href="#applications">Aplicacoes</a></li>
+    
+    <li class="section-label">UX / UI</li>
+    <li><a href="#ux-principles">Principios de Design</a></li>
+    <li><a href="#components">Componentes</a></li>
+    <li><a href="#navigation">Navegacao</a></li>
+    <li><a href="#spacing">Espacamento</a></li>
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<div class="main">
+
+<!-- ==================== COVER ==================== -->
+<section id="cover" class="cover page-section" style="border:none">
+  <div>
+    <div class="cover-symbol">
+      <svg viewBox="0 0 100 100" width="100" height="100"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></svg>
+    </div>
+    <div class="cover-badge">Manual Institucional da Marca</div>
+    <h1>Brandbook<br><span>Codara</span></h1>
+    <p>Diretrizes completas de identidade visual, comunicacao e experiencia do usuario para a plataforma de IA low-code.</p>
+    <div class="cover-meta">Versao 1.0 &mdash; Fevereiro 2026</div>
+  </div>
+</section>
+
+<!-- ==================== MISSION ==================== -->
+<section id="mission" class="page-section">
+  <div class="container">
+    <div class="section-number">01 &mdash; Fundacao</div>
+    <h2 class="section-title">Missao e Visao</h2>
+    <div class="section-subtitle">Os pilares estrategicos que definem a Codara e orientam todas as decisoes de marca, produto e comunicacao.</div>
+    
+    <h3>Missao</h3>
+    <p>Empoderar criadores e desenvolvedores a construir sistemas de IA complexos com simplicidade e velocidade, removendo as barreiras do desenvolvimento tradicional e acelerando o ciclo de inovacao.</p>
+    
+    <h3>Visao</h3>
+    <p>Tornar o desenvolvimento de software de ponta acessivel a todos, independentemente da profundidade do conhecimento tecnico, criando um futuro onde a criacao de tecnologia e limitada apenas pela imaginacao.</p>
+    
+    <h3>Slogan</h3>
+    <div class="brand-quote">Less Code. Go Faster.</div>
+    <p>Este slogan encapsula nossa proposta de valor principal: reduzir a complexidade e o volume de codigo para aumentar drasticamente a velocidade de desenvolvimento e implementacao.</p>
+  </div>
+</section>
+
+<!-- ==================== VALUES ==================== -->
+<section id="values" class="page-section">
+  <div class="container">
+    <div class="section-number">02 &mdash; Fundacao</div>
+    <h2 class="section-title">Valores da Marca</h2>
+    <div class="section-subtitle">Os principios que guiam nossas acoes, nosso produto e nossa cultura.</div>
+    
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">&#9889;</div>
+        <h4>Velocidade</h4>
+        <p>Priorizamos a agilidade e a eficiencia, permitindo que nossos usuarios transformem ideias em realidade no menor tempo possivel.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9678;</div>
+        <h4>Simplicidade</h4>
+        <p>Abstraimos a complexidade para oferecer uma experiencia intuitiva e focada, tornando a tecnologia poderosa acessivel e facil de usar.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9638;</div>
+        <h4>Modularidade</h4>
+        <p>Acreditamos em sistemas flexiveis e escalaveis, construidos a partir de blocos de construcao robustos e integraveis, como pecas de um quebra-cabeca.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9733;</div>
+        <h4>Inovacao</h4>
+        <p>Estamos na vanguarda da tecnologia de IA, constantemente explorando novas fronteiras para entregar as ferramentas mais avancadas.</p>
+      </div>
+      <div class="card" style="grid-column:span 2">
+        <div class="card-icon">&#9650;</div>
+        <h4>Empoderamento</h4>
+        <p>Damos aos nossos usuarios as ferramentas para que construam solucoes que antes eram inatingiveis, capacitando-os a inovar e a ter sucesso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PERSONALITY ==================== -->
+<section id="personality" class="page-section">
+  <div class="container">
+    <div class="section-number">03 &mdash; Fundacao</div>
+    <h2 class="section-title">Personalidade da Marca</h2>
+    <div class="section-subtitle">Se a Codara fosse uma pessoa, como ela se comportaria e se comunicaria.</div>
+    
+    <table class="brand-table">
+      <thead>
+        <tr><th>Traco</th><th>Descricao</th><th>Na Pratica</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Inteligente e Confiavel</strong></td><td>Uma especialista que domina a tecnologia e em quem voce pode confiar.</td><td>Documentacao clara, mensagens de erro uteis, dados precisos.</td></tr>
+        <tr><td><strong>Moderna e Inovadora</strong></td><td>Sempre a frente, com um olhar no futuro e paixao por novas ideias.</td><td>Interface atualizada, recursos de ponta, design contemporaneo.</td></tr>
+        <tr><td><strong>Acessivel e Encorajadora</strong></td><td>Uma mentora que guia e apoia, tornando o aprendizado positivo.</td><td>Onboarding intuitivo, tutoriais interativos, linguagem amigavel.</td></tr>
+        <tr><td><strong>Eficiente e Direta</strong></td><td>Focada em resultados, sem rodeios, valorizando o tempo e a clareza.</td><td>Fluxos otimizados, acoes rapidas, comunicacao concisa.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== LOGO ==================== -->
+<section id="logo" class="page-section">
+  <div class="container">
+    <div class="section-number">04 &mdash; Identidade Visual</div>
+    <h2 class="section-title">Logomarca</h2>
+    <div class="section-subtitle">O logo da Codara e o principal identificador da marca. Ele e composto por um simbolo e uma wordmark, projetados para funcionar de forma harmoniosa.</div>
+    
+    <h3>Versoes da Logomarca</h3>
+    <p>Para garantir versatilidade, a logomarca possui versoes para diferentes aplicacoes e fundos.</p>
+    
+    <div class="logo-showcase">
+      <!-- Primary -->
+      <div class="logo-box">
+        <svg viewBox="0 0 600 160" width="280" height="75">
+          <g transform="translate(8,12)"><g transform="scale(1.36)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></g></g>
+          <text x="156" y="101.6" font-family="Inter,sans-serif" font-weight="600" font-size="57.6" fill="#6C3CE1" letter-spacing="-0.02em">Codara</text>
+        </svg>
+        <span class="logo-box-label">Principal &mdash; fundo claro</span>
+      </div>
+      <!-- Dark -->
+      <div class="logo-box dark">
+        <svg viewBox="0 0 600 160" width="280" height="75">
+          <g transform="translate(8,12)"><g transform="scale(1.36)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#FFFFFF"/></g></g>
+          <text x="156" y="101.6" font-family="Inter,sans-serif" font-weight="600" font-size="57.6" fill="#FFFFFF" letter-spacing="-0.02em">Codara</text>
+        </svg>
+        <span class="logo-box-label">Negativa &mdash; fundo escuro</span>
+      </div>
+      <!-- Mono -->
+      <div class="logo-box mono">
+        <svg viewBox="0 0 600 160" width="280" height="75">
+          <g transform="translate(8,12)"><g transform="scale(1.36)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#000000"/></g></g>
+          <text x="156" y="101.6" font-family="Inter,sans-serif" font-weight="600" font-size="57.6" fill="#000000" letter-spacing="-0.02em">Codara</text>
+        </svg>
+        <span class="logo-box-label">Monocromatica &mdash; preto</span>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:40px">Logo com Slogan</h3>
+    <p>Versao expandida com o slogan posicionado abaixo da wordmark. Para uso em materiais institucionais, apresentacoes e pecas de comunicacao.</p>
+    
+    <div class="logo-showcase" style="grid-template-columns:1fr 1fr">
+      <div class="logo-box" style="min-height:180px">
+        <svg viewBox="0 0 600 200" width="320" height="107">
+          <g transform="translate(8,24)"><g transform="scale(1.24)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></g></g>
+          <text x="144" y="92" font-family="Inter,sans-serif" font-weight="600" font-size="52" fill="#6C3CE1" letter-spacing="-0.02em">Codara</text>
+          <text x="144" y="123" font-family="Inter,sans-serif" font-weight="400" font-size="14.56" fill="#9B7AE8" letter-spacing="0.08em">LESS CODE. GO FASTER.</text>
+        </svg>
+        <span class="logo-box-label">Com slogan &mdash; fundo claro</span>
+      </div>
+      <div class="logo-box dark" style="min-height:180px">
+        <svg viewBox="0 0 600 200" width="320" height="107">
+          <g transform="translate(8,24)"><g transform="scale(1.24)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#FFFFFF"/></g></g>
+          <text x="144" y="92" font-family="Inter,sans-serif" font-weight="600" font-size="52" fill="#FFFFFF" letter-spacing="-0.02em">Codara</text>
+          <text x="144" y="123" font-family="Inter,sans-serif" font-weight="400" font-size="14.56" fill="#AAAACC" letter-spacing="0.08em">LESS CODE. GO FASTER.</text>
+        </svg>
+        <span class="logo-box-label">Com slogan &mdash; fundo escuro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SYMBOL ==================== -->
+<section id="symbol" class="page-section">
+  <div class="container">
+    <div class="section-number">05 &mdash; Identidade Visual</div>
+    <h2 class="section-title">Simbolo e Icone</h2>
+    <div class="section-subtitle">O simbolo isolado para uso como favicon, icone de app, avatar em redes sociais e contextos onde o espaco e limitado.</div>
+    
+    <div class="symbol-grid">
+      <div class="symbol-box">
+        <svg viewBox="0 0 100 100" width="56" height="56"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></svg>
+        <span>Primario</span>
+      </div>
+      <div class="symbol-box">
+        <svg viewBox="0 0 100 100" width="56" height="56"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#000000"/></svg>
+        <span>Monocromatico</span>
+      </div>
+      <div class="symbol-box dark">
+        <svg viewBox="0 0 100 100" width="56" height="56"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#FFFFFF"/></svg>
+        <span>Negativo</span>
+      </div>
+      <div class="symbol-box icon">
+        <svg viewBox="0 0 100 100" width="56" height="56"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#FFFFFF"/></svg>
+        <span>App Icon</span>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:40px">Construcao do Simbolo</h3>
+    <p>O simbolo da Codara nasce da intersecao entre dois conceitos visuais: a <strong>peca de quebra-cabeca</strong> e a <strong>seta direcional</strong>. A peca de puzzle representa a natureza modular e integravel da plataforma low-code &mdash; cada componente se encaixa para formar sistemas completos. A seta, formada pelo recorte angular no lado esquerdo, simboliza a velocidade e o progresso que a plataforma proporciona aos seus usuarios.</p>
+    
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(108,60,225,0.1)">&#9654;</div>
+        <h4>Seta / Chevron</h4>
+        <p>O recorte angular no lado esquerdo forma uma seta apontando para a direita, representando velocidade, movimento para frente e aceleracao.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(108,60,225,0.1)">&#9646;</div>
+        <h4>Peca de Quebra-Cabeca</h4>
+        <p>A forma geral com conectores no topo e na lateral direita simboliza modularidade, blocos low-code e integracao de sistemas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLEAR SPACE ==================== -->
+<section id="clearspace" class="page-section">
+  <div class="container">
+    <div class="section-number">06 &mdash; Identidade Visual</div>
+    <h2 class="section-title">Area de Protecao</h2>
+    <div class="section-subtitle">Para garantir a legibilidade e o destaque da logomarca, e fundamental respeitar uma area de protecao ao seu redor.</div>
+    
+    <div class="clearspace-demo">
+      <div class="clearspace-inner">
+        <span class="clearspace-label top">X</span>
+        <span class="clearspace-label right">X</span>
+        <span class="clearspace-label bottom">X</span>
+        <span class="clearspace-label left">X</span>
+        <svg viewBox="0 0 600 160" width="300" height="80">
+          <g transform="translate(8,12)"><g transform="scale(1.36)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></g></g>
+          <text x="156" y="101.6" font-family="Inter,sans-serif" font-weight="600" font-size="57.6" fill="#6C3CE1" letter-spacing="-0.02em">Codara</text>
+        </svg>
+      </div>
+    </div>
+    
+    <p>A medida de referencia para o respiro e a <strong>altura do conector superior do simbolo</strong>, representada por <strong>"X"</strong>. Esta area deve ser livre de outros elementos graficos, como textos, imagens ou bordas.</p>
+    
+    <h3 style="margin-top:32px">Tamanho Minimo</h3>
+    <table class="brand-table">
+      <thead><tr><th>Contexto</th><th>Versao</th><th>Tamanho Minimo</th></tr></thead>
+      <tbody>
+        <tr><td>Digital</td><td>Logo completo</td><td><strong>120 pixels</strong> de largura</td></tr>
+        <tr><td>Digital</td><td>Simbolo isolado</td><td><strong>24 pixels</strong> de largura</td></tr>
+        <tr><td>Impresso</td><td>Logo completo</td><td><strong>2.5 cm</strong> de largura</td></tr>
+        <tr><td>Impresso</td><td>Simbolo isolado</td><td><strong>0.8 cm</strong> de largura</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== MISUSE ==================== -->
+<section id="misuse" class="page-section">
+  <div class="container">
+    <div class="section-number">07 &mdash; Identidade Visual</div>
+    <h2 class="section-title">Usos Incorretos</h2>
+    <div class="section-subtitle">Para manter a consistencia da marca, as seguintes praticas devem ser evitadas.</div>
+    
+    <div class="misuse-grid">
+      <div class="misuse-box">
+        <svg viewBox="0 0 200 60" width="160" height="48">
+          <g transform="translate(4,4) scale(0.52)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#FF6B6B"/></g>
+          <text x="60" y="38" font-family="Inter,sans-serif" font-weight="600" font-size="20" fill="#FF6B6B" letter-spacing="-0.02em">Codara</text>
+        </svg>
+        <p>Nao altere as cores</p>
+      </div>
+      <div class="misuse-box">
+        <svg viewBox="0 0 200 60" width="160" height="48">
+          <g transform="translate(4,4) scale(0.52) skewX(15)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></g>
+          <text x="60" y="38" font-family="Inter,sans-serif" font-weight="600" font-size="20" fill="#6C3CE1" letter-spacing="-0.02em" transform="skewX(15)">Codara</text>
+        </svg>
+        <p>Nao distorca</p>
+      </div>
+      <div class="misuse-box">
+        <svg viewBox="0 0 200 60" width="160" height="48">
+          <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6C3CE1"/><stop offset="100%" style="stop-color:#FF6B6B"/></linearGradient></defs>
+          <g transform="translate(4,4) scale(0.52)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="url(#g1)"/></g>
+          <text x="60" y="38" font-family="Inter,sans-serif" font-weight="600" font-size="20" fill="url(#g1)" letter-spacing="-0.02em">Codara</text>
+        </svg>
+        <p>Nao adicione gradientes</p>
+      </div>
+      <div class="misuse-box">
+        <svg viewBox="0 0 200 60" width="160" height="48">
+          <g transform="translate(4,4) scale(0.52)" opacity="0.3"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></g>
+          <text x="60" y="38" font-family="Inter,sans-serif" font-weight="600" font-size="20" fill="#6C3CE1" opacity="0.3" letter-spacing="-0.02em">Codara</text>
+        </svg>
+        <p>Nao reduza a opacidade</p>
+      </div>
+      <div class="misuse-box">
+        <svg viewBox="0 0 200 60" width="160" height="48">
+          <g transform="translate(4,4) scale(0.52) rotate(15 50 50)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></g>
+          <text x="60" y="38" font-family="Inter,sans-serif" font-weight="600" font-size="20" fill="#6C3CE1" letter-spacing="-0.02em" transform="rotate(15 130 30)">Codara</text>
+        </svg>
+        <p>Nao rotacione</p>
+      </div>
+      <div class="misuse-box" style="background:repeating-linear-gradient(45deg,#eee,#eee 4px,#ddd 4px,#ddd 8px)">
+        <svg viewBox="0 0 200 60" width="160" height="48">
+          <g transform="translate(4,4) scale(0.52)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></g>
+          <text x="60" y="38" font-family="Inter,sans-serif" font-weight="600" font-size="20" fill="#6C3CE1" letter-spacing="-0.02em">Codara</text>
+        </svg>
+        <p>Nao use em fundos complexos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== COLORS ==================== -->
+<section id="colors" class="page-section">
+  <div class="container">
+    <div class="section-number">08 &mdash; Identidade Visual</div>
+    <h2 class="section-title">Paleta de Cores</h2>
+    <div class="section-subtitle">A paleta de cores da Codara foi escolhida para transmitir inovacao, confianca e clareza. O Violet Deep e a nossa cor primaria.</div>
+    
+    <h3>Cores Primarias</h3>
+    <div class="color-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#6C3CE1"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Violet Deep</div>
+          <div class="color-swatch-hex">#6C3CE1</div>
+          <div class="color-swatch-rgb">RGB 108, 60, 225</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#0F0F1A"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Night</div>
+          <div class="color-swatch-hex">#0F0F1A</div>
+          <div class="color-swatch-rgb">RGB 15, 15, 26</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#FFFFFF;border-bottom:1px solid #eee"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">White</div>
+          <div class="color-swatch-hex">#FFFFFF</div>
+          <div class="color-swatch-rgb">RGB 255, 255, 255</div>
+        </div>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:32px">Cores Secundarias</h3>
+    <div class="color-grid" style="grid-template-columns:repeat(5,1fr)">
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#5429B5"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Violet Dark</div>
+          <div class="color-swatch-hex">#5429B5</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#9B7AE8"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Violet Light</div>
+          <div class="color-swatch-hex">#9B7AE8</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#E8E0F7"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Violet Wash</div>
+          <div class="color-swatch-hex">#E8E0F7</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#2A2A3A"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Charcoal</div>
+          <div class="color-swatch-hex">#2A2A3A</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#F8F8FC;border-bottom:1px solid #eee"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Snow</div>
+          <div class="color-swatch-hex">#F8F8FC</div>
+        </div>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:32px">Cores Semanticas (UI)</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#22C55E"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Success</div>
+          <div class="color-swatch-hex">#22C55E</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#F59E0B"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Warning</div>
+          <div class="color-swatch-hex">#F59E0B</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#EF4444"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Error</div>
+          <div class="color-swatch-hex">#EF4444</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-swatch-preview" style="background:#3B82F6"></div>
+        <div class="color-swatch-info">
+          <div class="color-swatch-name">Info</div>
+          <div class="color-swatch-hex">#3B82F6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TYPOGRAPHY ==================== -->
+<section id="typography" class="page-section">
+  <div class="container">
+    <div class="section-number">09 &mdash; Identidade Visual</div>
+    <h2 class="section-title">Tipografia</h2>
+    <div class="section-subtitle">A familia tipografica Inter e utilizada em toda a comunicacao da Codara. Projetada para interfaces digitais, oferece excelente legibilidade.</div>
+    
+    <div class="type-sample">
+      <div class="type-sample-label">Inter Bold &mdash; 700 &mdash; Titulos Principais</div>
+      <div class="type-sample-text" style="font-size:36px;font-weight:700;letter-spacing:-0.03em">Construa sistemas de IA mais rapido</div>
+    </div>
+    
+    <div class="type-sample">
+      <div class="type-sample-label">Inter Semibold &mdash; 600 &mdash; Wordmark e Subtitulos</div>
+      <div class="type-sample-text" style="font-size:24px;font-weight:600;letter-spacing:-0.02em">Less Code. Go Faster.</div>
+    </div>
+    
+    <div class="type-sample">
+      <div class="type-sample-label">Inter Medium &mdash; 500 &mdash; Destaques e Labels</div>
+      <div class="type-sample-text" style="font-size:16px;font-weight:500">Novo Recurso &bull; Documentacao &bull; Configuracoes</div>
+    </div>
+    
+    <div class="type-sample">
+      <div class="type-sample-label">Inter Regular &mdash; 400 &mdash; Corpo de Texto</div>
+      <div class="type-sample-text" style="font-size:15px;font-weight:400;line-height:1.8;color:var(--charcoal)">A Codara permite que voce se concentre na logica do seu sistema, enquanto nos cuidamos da complexidade. Com nossa plataforma de IA low-code, voce pode construir, testar e implantar solucoes de inteligencia artificial em uma fracao do tempo.</div>
+    </div>
+    
+    <div class="type-sample">
+      <div class="type-sample-label">Inter Light &mdash; 300 &mdash; Textos Auxiliares</div>
+      <div class="type-sample-text" style="font-size:14px;font-weight:300;color:var(--gray-600)">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%&amp;*()+-=</div>
+    </div>
+    
+    <h3 style="margin-top:40px">Hierarquia Tipografica</h3>
+    <table class="brand-table">
+      <thead><tr><th>Uso</th><th>Peso</th><th>Tamanho (Web)</th><th>Line Height</th></tr></thead>
+      <tbody>
+        <tr><td>Display / H1</td><td>Bold (700)</td><td>40 &ndash; 56px</td><td>1.1 &ndash; 1.15</td></tr>
+        <tr><td>Heading / H2</td><td>Bold (700)</td><td>28 &ndash; 36px</td><td>1.2</td></tr>
+        <tr><td>Subheading / H3</td><td>Semibold (600)</td><td>20 &ndash; 24px</td><td>1.3</td></tr>
+        <tr><td>Body</td><td>Regular (400)</td><td>15 &ndash; 16px</td><td>1.6 &ndash; 1.8</td></tr>
+        <tr><td>Small / Caption</td><td>Medium (500)</td><td>12 &ndash; 13px</td><td>1.4</td></tr>
+        <tr><td>Overline / Label</td><td>Semibold (600)</td><td>11 &ndash; 12px</td><td>1.2</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== VOICE ==================== -->
+<section id="voice" class="page-section">
+  <div class="container">
+    <div class="section-number">10 &mdash; Comunicacao</div>
+    <h2 class="section-title">Tom de Voz</h2>
+    <div class="section-subtitle">O tom de voz da Codara e um reflexo direto da nossa personalidade de marca. Ele guia como nos comunicamos em todos os canais.</div>
+    
+    <div class="cards-grid">
+      <div class="card">
+        <h4>Claro e Conciso</h4>
+        <p>Comunicamos ideias complexas de forma simples e direta. Evitamos jargoes tecnicos desnecessarios e vamos direto ao ponto.</p>
+      </div>
+      <div class="card">
+        <h4>Confiante e Especialista</h4>
+        <p>Falamos com a autoridade de quem entende profundamente do assunto, transmitindo seguranca e confianca.</p>
+      </div>
+      <div class="card">
+        <h4>Inspirador e Encorajador</h4>
+        <p>Motivamos nossos usuarios a experimentar, criar e inovar. Celebramos suas conquistas e os apoiamos em seus desafios.</p>
+      </div>
+      <div class="card">
+        <h4>Profissional, nao Corporativo</h4>
+        <p>Mantemos um alto padrao de profissionalismo, mas sem a rigidez e a formalidade excessiva do mundo corporativo tradicional.</p>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:32px">Exemplos</h3>
+    <div class="do-dont">
+      <div class="do-box">
+        <h4>Fazer</h4>
+        <ul style="list-style:none;padding:0">
+          <li style="margin-bottom:8px">"Crie seu primeiro assistente de IA em menos de 5 minutos."</li>
+          <li style="margin-bottom:8px">"Conecte sua base de dados, defina o objetivo e deixe a Codara cuidar da complexidade."</li>
+          <li>"Seu projeto foi implantado com sucesso. Veja os resultados."</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>Nao Fazer</h4>
+        <ul style="list-style:none;padding:0">
+          <li style="margin-bottom:8px">"Nossa plataforma sinergica de IA low-code aproveita um paradigma de computacao distribuida..."</li>
+          <li style="margin-bottom:8px">"Talvez voce consiga otimizar o pipeline se tentar..."</li>
+          <li>"Operacao concluida. Codigo de status: 200. Referencia: TX-4829."</li>
+        </ul>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:32px">Diretrizes por Canal</h3>
+    <table class="brand-table">
+      <thead><tr><th>Canal</th><th>Tom</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td>Website</td><td>Inspirador, focado em beneficios</td><td>"Transforme ideias em sistemas inteligentes."</td></tr>
+        <tr><td>Documentacao</td><td>Claro, tecnico mas acessivel</td><td>"Para conectar uma API, use o bloco 'HTTP Request'."</td></tr>
+        <tr><td>Redes Sociais</td><td>Engajador, conversacional</td><td>"O que voce construiria se pudesse criar qualquer sistema de IA?"</td></tr>
+        <tr><td>E-mail</td><td>Pessoal, direto</td><td>"Oi, [Nome]. Seu projeto 'Chatbot v2' esta pronto."</td></tr>
+        <tr><td>Mensagens de Erro</td><td>Empatico, orientado a solucao</td><td>"Algo deu errado. Tente novamente ou entre em contato."</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== APPLICATIONS ==================== -->
+<section id="applications" class="page-section">
+  <div class="container">
+    <div class="section-number">11 &mdash; Comunicacao</div>
+    <h2 class="section-title">Aplicacoes da Marca</h2>
+    <div class="section-subtitle">Demonstracoes de como aplicar a identidade visual da Codara em diferentes materiais de comunicacao.</div>
+    
+    <div class="mockup-grid">
+      <!-- Social Media Avatar -->
+      <div>
+        <div class="mockup">
+          <div class="mockup-header">
+            <div class="mockup-dot" style="background:#FF5F57"></div>
+            <div class="mockup-dot" style="background:#FFBD2E"></div>
+            <div class="mockup-dot" style="background:#28CA42"></div>
+          </div>
+          <div class="mockup-body" style="background:var(--violet)">
+            <svg viewBox="0 0 100 100" width="64" height="64"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#FFFFFF"/></svg>
+          </div>
+        </div>
+        <div class="mockup-label">Avatar para Redes Sociais</div>
+      </div>
+      
+      <!-- Business Card -->
+      <div>
+        <div class="mockup">
+          <div class="mockup-header">
+            <div class="mockup-dot" style="background:#FF5F57"></div>
+            <div class="mockup-dot" style="background:#FFBD2E"></div>
+            <div class="mockup-dot" style="background:#28CA42"></div>
+          </div>
+          <div class="mockup-body" style="background:var(--night);flex-direction:column;gap:8px">
+            <svg viewBox="0 0 600 160" width="200" height="53">
+              <g transform="translate(8,12)"><g transform="scale(1.36)"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#FFFFFF"/></g></g>
+              <text x="156" y="101.6" font-family="Inter,sans-serif" font-weight="600" font-size="57.6" fill="#FFFFFF" letter-spacing="-0.02em">Codara</text>
+            </svg>
+            <span style="color:rgba(255,255,255,0.3);font-size:11px;letter-spacing:0.08em">LESS CODE. GO FASTER.</span>
+          </div>
+        </div>
+        <div class="mockup-label">Cartao de Visita (verso)</div>
+      </div>
+      
+      <!-- Slide -->
+      <div>
+        <div class="mockup">
+          <div class="mockup-header">
+            <div class="mockup-dot" style="background:#FF5F57"></div>
+            <div class="mockup-dot" style="background:#FFBD2E"></div>
+            <div class="mockup-dot" style="background:#28CA42"></div>
+          </div>
+          <div class="mockup-body" style="flex-direction:column;align-items:flex-start;padding:24px;gap:8px">
+            <svg viewBox="0 0 100 100" width="24" height="24"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></svg>
+            <span style="font-size:18px;font-weight:700;color:var(--night)">Titulo do Slide</span>
+            <span style="font-size:11px;color:var(--gray-400)">Conteudo da apresentacao com tipografia Inter e cores da marca.</span>
+          </div>
+        </div>
+        <div class="mockup-label">Slide de Apresentacao</div>
+      </div>
+      
+      <!-- Email Signature -->
+      <div>
+        <div class="mockup">
+          <div class="mockup-header">
+            <div class="mockup-dot" style="background:#FF5F57"></div>
+            <div class="mockup-dot" style="background:#FFBD2E"></div>
+            <div class="mockup-dot" style="background:#28CA42"></div>
+          </div>
+          <div class="mockup-body" style="flex-direction:column;align-items:flex-start;padding:24px;gap:4px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+              <svg viewBox="0 0 100 100" width="28" height="28"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></svg>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:var(--night)">Nome Sobrenome</div>
+                <div style="font-size:11px;color:var(--gray-400)">Product Designer</div>
+              </div>
+            </div>
+            <span style="font-size:10px;color:var(--gray-400)">nome@codara.dev &bull; codara.dev</span>
+            <div style="width:40px;height:2px;background:var(--violet);margin-top:4px;border-radius:1px"></div>
+          </div>
+        </div>
+        <div class="mockup-label">Assinatura de E-mail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== UX PRINCIPLES ==================== -->
+<section id="ux-principles" class="page-section">
+  <div class="container">
+    <div class="section-number">12 &mdash; UX / UI</div>
+    <h2 class="section-title">Principios de Design</h2>
+    <div class="section-subtitle">A filosofia de design de interface da Codara e um reflexo direto dos nossos valores de marca: simplicidade, velocidade e modularidade.</div>
+    
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">&#9678;</div>
+        <h4>Clareza Acima de Tudo</h4>
+        <p>A interface deve ser autoexplicativa. Reduza a desordem, priorize o conteudo e guie o usuario com uma hierarquia visual clara.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9889;</div>
+        <h4>Eficiencia e a Chave</h4>
+        <p>Os fluxos de trabalho devem ser otimizados para o menor numero de cliques possivel. A performance e um recurso fundamental.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9638;</div>
+        <h4>Consistencia Gera Confianca</h4>
+        <p>Componentes e interacoes devem se comportar da mesma maneira em toda a plataforma. Um sistema de design consistente acelera o aprendizado.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9654;</div>
+        <h4>Feedback Imediato</h4>
+        <p>A interface deve fornecer feedback instantaneo para as acoes do usuario, seja atraves de animacoes sutis ou indicadores de carregamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== COMPONENTS ==================== -->
+<section id="components" class="page-section">
+  <div class="container">
+    <div class="section-number">13 &mdash; UX / UI</div>
+    <h2 class="section-title">Componentes</h2>
+    <div class="section-subtitle">Visao geral dos principais componentes do sistema de design da Codara.</div>
+    
+    <h3>Botoes</h3>
+    <p>Os botoes sao usados para acoes principais. Eles devem ser claramente identificaveis e seu texto deve descrever a acao que sera executada.</p>
+    
+    <div class="btn-demo">
+      <button class="btn btn-primary">Primario</button>
+      <button class="btn btn-secondary">Secundario</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-disabled">Desabilitado</button>
+    </div>
+    
+    <table class="brand-table" style="margin-top:24px">
+      <thead><tr><th>Variante</th><th>Fundo</th><th>Texto</th><th>Borda</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td>Primario</td><td>Violet Deep</td><td>White</td><td>Violet Deep</td><td>Acao principal em uma tela</td></tr>
+        <tr><td>Secundario</td><td>White</td><td>Violet Deep</td><td>Violet Deep</td><td>Acoes secundarias</td></tr>
+        <tr><td>Ghost</td><td>Transparent</td><td>Charcoal</td><td>Gray 300</td><td>Acoes terciarias</td></tr>
+        <tr><td>Desabilitado</td><td>Snow</td><td>Gray 400</td><td>Gray 200</td><td>Acao indisponivel</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:40px">Campos de Formulario</h3>
+    <p>Os campos de formulario devem ser limpos, com labels claras e feedback de validacao em tempo real.</p>
+    
+    <div class="form-demo">
+      <div class="form-group">
+        <label class="form-label">Nome do Projeto</label>
+        <input type="text" class="form-input" value="Meu Assistente de IA" readonly>
+        <div class="form-hint">Escolha um nome descritivo para seu projeto.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">API Key</label>
+        <input type="text" class="form-input error" value="" placeholder="Insira sua chave de API" readonly>
+        <div class="form-hint error">Este campo e obrigatorio.</div>
+      </div>
+    </div>
+    
+    <h3 style="margin-top:40px">Cards</h3>
+    <p>Cards sao usados para agrupar informacoes e acoes relacionadas a um unico topico, como um modelo de IA ou um fluxo de trabalho.</p>
+    
+    <div class="card-demo">
+      <div class="ui-card">
+        <span class="ui-card-badge active">Ativo</span>
+        <h4>Chatbot v2</h4>
+        <p>Assistente de atendimento ao cliente com integracao CRM.</p>
+      </div>
+      <div class="ui-card">
+        <span class="ui-card-badge draft">Rascunho</span>
+        <h4>Analisador de Dados</h4>
+        <p>Pipeline de analise automatizada para relatorios financeiros.</p>
+      </div>
+      <div class="ui-card">
+        <span class="ui-card-badge active">Ativo</span>
+        <h4>Gerador de Conteudo</h4>
+        <p>Sistema de criacao de conteudo para marketing digital.</p>
+      </div>
+    </div>
+    
+    <table class="brand-table" style="margin-top:24px">
+      <thead><tr><th>Propriedade</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Fundo</td><td>White (#FFFFFF)</td></tr>
+        <tr><td>Borda</td><td>1px solid Gray 200 (#EDEDF5)</td></tr>
+        <tr><td>Border Radius</td><td>12px</td></tr>
+        <tr><td>Padding</td><td>24px</td></tr>
+        <tr><td>Hover Shadow</td><td>0 8px 24px rgba(0,0,0,0.06)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== NAVIGATION ==================== -->
+<section id="navigation" class="page-section">
+  <div class="container">
+    <div class="section-number">14 &mdash; UX / UI</div>
+    <h2 class="section-title">Navegacao</h2>
+    <div class="section-subtitle">A navegacao principal da plataforma deve ser persistente e localizada em uma barra lateral a esquerda.</div>
+    
+    <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap">
+      <div>
+        <h4 style="margin-bottom:16px">Sidebar Navigation</h4>
+        <div class="nav-demo">
+          <div class="nav-demo-item active"><span class="dot"></span> Projetos</div>
+          <div class="nav-demo-item"><span class="dot"></span> Modelos</div>
+          <div class="nav-demo-item"><span class="dot"></span> Documentacao</div>
+          <div class="nav-demo-item"><span class="dot"></span> Integracao</div>
+          <div class="nav-demo-item"><span class="dot"></span> Configuracoes</div>
+        </div>
+      </div>
+      
+      <div style="flex:1;min-width:300px">
+        <h4 style="margin-bottom:16px">Especificacoes</h4>
+        <table class="brand-table">
+          <thead><tr><th>Propriedade</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Largura</td><td>240 &ndash; 260px</td></tr>
+            <tr><td>Fundo</td><td>Night (#0F0F1A)</td></tr>
+            <tr><td>Item Ativo</td><td>Fundo rgba(108,60,225,0.2), cor White</td></tr>
+            <tr><td>Item Inativo</td><td>Cor Gray 400 (#9999AA)</td></tr>
+            <tr><td>Hover</td><td>Fundo rgba(255,255,255,0.05)</td></tr>
+            <tr><td>Icone Ativo</td><td>Violet Deep (#6C3CE1)</td></tr>
+            <tr><td>Font Size</td><td>13px, Medium (500)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SPACING ==================== -->
+<section id="spacing" class="page-section">
+  <div class="container">
+    <div class="section-number">15 &mdash; UX / UI</div>
+    <h2 class="section-title">Espacamento e Grid</h2>
+    <div class="section-subtitle">O sistema de espacamento da Codara e baseado em uma escala de 4px, garantindo consistencia e harmonia em toda a interface.</div>
+    
+    <h3>Escala de Espacamento</h3>
+    <div class="spacing-demo">
+      <div><div class="spacing-block" style="width:16px;height:16px">4</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">4px</div></div>
+      <div><div class="spacing-block" style="width:24px;height:24px">8</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">8px</div></div>
+      <div><div class="spacing-block" style="width:36px;height:36px">12</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">12px</div></div>
+      <div><div class="spacing-block" style="width:48px;height:48px">16</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">16px</div></div>
+      <div><div class="spacing-block" style="width:60px;height:60px">24</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">24px</div></div>
+      <div><div class="spacing-block" style="width:76px;height:76px">32</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">32px</div></div>
+      <div><div class="spacing-block" style="width:96px;height:96px">48</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">48px</div></div>
+      <div><div class="spacing-block" style="width:120px;height:120px">64</div><div style="font-size:10px;color:var(--gray-400);text-align:center;margin-top:4px">64px</div></div>
+    </div>
+    
+    <h3 style="margin-top:40px">Grid System</h3>
+    <table class="brand-table">
+      <thead><tr><th>Propriedade</th><th>Desktop</th><th>Tablet</th><th>Mobile</th></tr></thead>
+      <tbody>
+        <tr><td>Colunas</td><td>12</td><td>8</td><td>4</td></tr>
+        <tr><td>Gutter</td><td>24px</td><td>20px</td><td>16px</td></tr>
+        <tr><td>Margem</td><td>48 &ndash; 80px</td><td>32px</td><td>16 &ndash; 24px</td></tr>
+        <tr><td>Max Width</td><td>1200px</td><td>100%</td><td>100%</td></tr>
+        <tr><td>Breakpoint</td><td>&ge; 1024px</td><td>&ge; 768px</td><td>&lt; 768px</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:40px">Border Radius</h3>
+    <table class="brand-table">
+      <thead><tr><th>Componente</th><th>Radius</th></tr></thead>
+      <tbody>
+        <tr><td>Botoes</td><td>8px</td></tr>
+        <tr><td>Cards</td><td>12px</td></tr>
+        <tr><td>Inputs</td><td>8px</td></tr>
+        <tr><td>Modals</td><td>16px</td></tr>
+        <tr><td>Badges / Pills</td><td>100px (full round)</td></tr>
+        <tr><td>App Icon</td><td>18% do tamanho</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<section class="page-section" style="background:var(--night);text-align:center;padding:60px">
+  <svg viewBox="0 0 100 100" width="40" height="40"><path d="M14 22L41 22C41 15,46 10,52 10C58 10,63 15,63 22L84 22L84 42C91 42,96 47,96 53C96 59,91 64,84 64L84 84L14 84L14 64L36 53L14 42Z" fill="#6C3CE1"/></svg>
+  <p style="color:rgba(255,255,255,0.3);font-size:13px;margin-top:16px">Codara &mdash; Brandbook &amp; Manual Institucional</p>
+  <p style="color:rgba(255,255,255,0.15);font-size:11px;margin-top:4px">Versao 1.0 &bull; Fevereiro 2026 &bull; Todos os direitos reservados</p>
+</section>
+
+</div><!-- /main -->
+
+<script>
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('.page-section[id]');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+
+// Close mobile sidebar on link click
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.sidebar').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
