@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codara — Identidade Visual</title>
+<meta name="description" content="Identidade visual da Codara — plataforma de IA low-code. Less Code. Go Faster.">
+<meta property="og:title" content="Codara — Identidade Visual">
+<meta property="og:description" content="Identidade visual da Codara — plataforma de IA low-code. Less Code. Go Faster.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#6C3CE1">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 14 22 L 41 22 C 41 15 46 10 52 10 C 58 10 63 15 63 22 L 84 22 L 84 42 C 91 42 96 47 96 53 C 96 59 91 64 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z' fill='%236C3CE1'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --primary: #6C3CE1;
+    --primary-light: #9B7AE8;
+    --primary-dark: #5429B5;
+    --dark: #0F0F1A;
+    --gray-100: #F8F8FC;
+    --gray-200: #EDEDF5;
+    --gray-400: #9999AA;
+    --gray-600: #555566;
+    --gray-800: #2A2A3A;
+    --white: #FFFFFF;
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Navigation */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 40px;
+    transition: box-shadow 0.3s;
+  }
+  
+  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+  
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--dark);
+  }
+  
+  .nav-logo svg { width: 28px; height: 28px; }
+  
+  .nav-logo span {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .nav-links a:hover { color: var(--primary); }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  
+  /* Hero */
+  .hero {
+    padding: 136px 0 64px;
+    text-align: center;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-600);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  
+  .hero h1 span { color: var(--primary); }
+  
+  .hero p {
+    font-size: 17px;
+    color: var(--gray-600);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  
+  /* Sections */
+  section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  section:last-of-type { border-bottom: none; }
+  
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  
+  .section-desc {
+    font-size: 15px;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  
+  /* Logo Display */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  
+  .logo-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 48px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  
+  .logo-card:hover {
+    box-shadow: 0 8px 32px rgba(108, 60, 225, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .logo-card.dark {
+    background: var(--dark);
+    border-color: transparent;
+  }
+  
+  .logo-card.primary-bg {
+    background: var(--primary);
+    border-color: transparent;
+  }
+  
+  .logo-card.full-width { grid-column: 1 / -1; }
+  
+  .logo-card svg { max-width: 100%; height: auto; }
+  
+  .logo-card-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    text-align: center;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  
+  .logo-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Symbol grid */
+  .symbol-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .symbol-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  
+  .symbol-card:hover {
+    box-shadow: 0 8px 32px rgba(108, 60, 225, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .symbol-card.dark {
+    background: var(--dark);
+    border-color: transparent;
+  }
+  
+  .symbol-card.primary-bg {
+    background: var(--primary);
+    border-color: transparent;
+    border-radius: 24px;
+  }
+  
+  /* Concept */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  
+  .concept-item {
+    padding: 32px;
+    background: var(--gray-100);
+    border-radius: 16px;
+    transition: transform 0.3s;
+  }
+  
+  .concept-item:hover { transform: translateY(-2px); }
+  
+  .concept-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  
+  .concept-item p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+  
+  .concept-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  /* Colors */
+  .color-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .color-swatch {
+    flex: 1;
+    border-radius: 16px;
+    padding: 24px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.3s;
+  }
+  
+  .color-swatch:hover { transform: translateY(-2px); }
+  
+  .color-swatch .name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  
+  .color-swatch .hex {
+    font-size: 13px;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    opacity: 0.7;
+  }
+  
+  /* Rationale */
+  .rationale {
+    background: var(--gray-100);
+    border-radius: 20px;
+    padding: 48px;
+    margin-top: 40px;
+  }
+  
+  .rationale h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  
+  .rationale p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  
+  .rationale p:last-child { margin-bottom: 0; }
+  
+  /* Typography section */
+  .type-sample {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .type-sample:last-child { border-bottom: none; padding-bottom: 0; }
+  
+  .type-label {
+    font-size: 13px;
+    color: var(--gray-400);
+    font-weight: 500;
+    margin-top: 8px;
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 48px 0;
+    text-align: center;
+    color: var(--gray-400);
+    font-size: 13px;
+    border-top: 1px solid var(--gray-200);
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .footer-logo svg { width: 20px; height: 20px; }
+  .footer-logo span { font-weight: 600; font-size: 15px; color: var(--gray-600); }
+  
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .nav { padding: 0 24px; }
+    .hero { padding: 120px 0 48px; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 15px; }
+    section { padding: 48px 0; }
+    .section-title { font-size: 22px; }
+    .logo-grid { grid-template-columns: 1fr; }
+    .logo-card.full-width { grid-column: auto; }
+    .symbol-grid { grid-template-columns: repeat(2, 1fr); }
+    .concept-grid { grid-template-columns: 1fr; }
+    .color-row { flex-direction: column; }
+    .color-swatch { min-height: 80px; }
+    .rationale { padding: 28px; }
+    .nav-links { display: none; }
+  }
+  
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 28px; }
+    .logo-card { padding: 32px 20px; min-height: 140px; }
+    .logo-card svg { width: 280px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 100 100">
+        <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#6C3CE1"/>
+      </svg>
+      <span>Codara</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#logo">Logo</a></li>
+      <li><a href="#slogan">Slogan</a></li>
+      <li><a href="#icone">Icone</a></li>
+      <li><a href="#conceito">Conceito</a></li>
+      <li><a href="#cores">Cores</a></li>
+      <li><a href="#tipografia">Tipografia</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-badge">Brand Identity</div>
+    <h1>Identidade Visual<br><span>Codara</span></h1>
+    <p>Proposta de logomarca para a plataforma de IA low-code. Conceito baseado em modularidade, velocidade e inovação tecnológica.</p>
+  </div>
+</div>
+
+<!-- Logo Principal -->
+<section id="logo">
+  <div class="container">
+    <div class="section-label fade-in">01 — Logo Principal</div>
+    <div class="section-title fade-in">Simbolo + Wordmark</div>
+    <div class="section-desc fade-in">A logo principal combina o simbolo da Codara com a wordmark em tipografia Inter Semibold. Esta e a versao preferencial para uso em contextos formais e institucionais.</div>
+    
+    <div class="logo-grid fade-in">
+      <div class="logo-card-wrapper">
+        <div class="logo-card full-width" style="grid-column: 1 / -1;">
+          <svg viewBox="0 0 600 160" width="500" height="133">
+            <style>.wm{font-family:'Inter',sans-serif;font-weight:600;font-size:57.6px;letter-spacing:-0.02em}</style>
+            <g transform="translate(8, 12)"><g transform="scale(1.36)">
+              <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#6C3CE1"/>
+            </g></g>
+            <text x="156" y="101.6" class="wm" fill="#6C3CE1">Codara</text>
+          </svg>
+        </div>
+        <div class="logo-card-label">Versao principal — fundo claro</div>
+      </div>
+    </div>
+    
+    <div class="logo-grid fade-in">
+      <div class="logo-card-wrapper">
+        <div class="logo-card dark">
+          <svg viewBox="0 0 600 160" width="400" height="107">
+            <style>.wm2{font-family:'Inter',sans-serif;font-weight:600;font-size:57.6px;letter-spacing:-0.02em}</style>
+            <g transform="translate(8, 12)"><g transform="scale(1.36)">
+              <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#FFFFFF"/>
+            </g></g>
+            <text x="156" y="101.6" class="wm2" fill="#FFFFFF">Codara</text>
+          </svg>
+        </div>
+        <div class="logo-card-label">Versao negativa — fundo escuro</div>
+      </div>
+      
+      <div class="logo-card-wrapper">
+        <div class="logo-card">
+          <svg viewBox="0 0 600 160" width="400" height="107">
+            <style>.wm3{font-family:'Inter',sans-serif;font-weight:600;font-size:57.6px;letter-spacing:-0.02em}</style>
+            <g transform="translate(8, 12)"><g transform="scale(1.36)">
+              <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#000000"/>
+            </g></g>
+            <text x="156" y="101.6" class="wm3" fill="#000000">Codara</text>
+          </svg>
+        </div>
+        <div class="logo-card-label">Versao monocromatica — preto</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Logo com Slogan -->
+<section id="slogan">
+  <div class="container">
+    <div class="section-label fade-in">02 — Logo com Slogan</div>
+    <div class="section-title fade-in">Less Code. Go Faster.</div>
+    <div class="section-desc fade-in">Versao expandida com o slogan posicionado abaixo da wordmark. Para uso em materiais institucionais, apresentacoes e pecas de comunicacao.</div>
+    
+    <div class="logo-grid fade-in">
+      <div class="logo-card-wrapper">
+        <div class="logo-card" style="padding: 40px;">
+          <svg viewBox="0 0 600 200" width="420" height="140">
+            <style>.wm4{font-family:'Inter',sans-serif;font-weight:600;font-size:52px;letter-spacing:-0.02em}.sl4{font-family:'Inter',sans-serif;font-weight:400;font-size:14.56px;letter-spacing:0.08em;text-transform:uppercase}</style>
+            <g transform="translate(8, 28)"><g transform="scale(1.24)">
+              <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#6C3CE1"/>
+            </g></g>
+            <text x="144" y="92" class="wm4" fill="#6C3CE1">Codara</text>
+            <text x="144" y="123.2" class="sl4" fill="#9B7AE8">Less Code. Go Faster.</text>
+          </svg>
+        </div>
+        <div class="logo-card-label">Versao com slogan — fundo claro</div>
+      </div>
+      
+      <div class="logo-card-wrapper">
+        <div class="logo-card dark" style="padding: 40px;">
+          <svg viewBox="0 0 600 200" width="420" height="140">
+            <style>.wm5{font-family:'Inter',sans-serif;font-weight:600;font-size:52px;letter-spacing:-0.02em}.sl5{font-family:'Inter',sans-serif;font-weight:400;font-size:14.56px;letter-spacing:0.08em;text-transform:uppercase}</style>
+            <g transform="translate(8, 28)"><g transform="scale(1.24)">
+              <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#FFFFFF"/>
+            </g></g>
+            <text x="144" y="92" class="wm5" fill="#FFFFFF">Codara</text>
+            <text x="144" y="123.2" class="sl5" fill="#AAAACC">Less Code. Go Faster.</text>
+          </svg>
+        </div>
+        <div class="logo-card-label">Versao com slogan — fundo escuro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Simbolo / Icone -->
+<section id="icone">
+  <div class="container">
+    <div class="section-label fade-in">03 — Simbolo / Icone</div>
+    <div class="section-title fade-in">Versao para icone de aplicativo</div>
+    <div class="section-desc fade-in">O simbolo isolado para uso como favicon, icone de app, avatar em redes sociais e contextos onde o espaco e limitado.</div>
+    
+    <div class="symbol-grid fade-in">
+      <div class="logo-card-wrapper">
+        <div class="symbol-card">
+          <svg viewBox="0 0 100 100" width="80" height="80">
+            <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#6C3CE1"/>
+          </svg>
+        </div>
+        <div class="logo-card-label">Primario</div>
+      </div>
+      
+      <div class="logo-card-wrapper">
+        <div class="symbol-card">
+          <svg viewBox="0 0 100 100" width="80" height="80">
+            <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#000000"/>
+          </svg>
+        </div>
+        <div class="logo-card-label">Monocromatico</div>
+      </div>
+      
+      <div class="logo-card-wrapper">
+        <div class="symbol-card dark">
+          <svg viewBox="0 0 100 100" width="80" height="80">
+            <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="logo-card-label">Negativo</div>
+      </div>
+      
+      <div class="logo-card-wrapper">
+        <div class="symbol-card primary-bg">
+          <svg viewBox="0 0 100 100" width="80" height="80">
+            <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div class="logo-card-label">App Icon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Conceito -->
+<section id="conceito">
+  <div class="container">
+    <div class="section-label fade-in">04 — Conceito</div>
+    <div class="section-title fade-in">Racional de Design</div>
+    <div class="section-desc fade-in">O simbolo da Codara foi construido a partir da fusao de dois conceitos visuais fundamentais que representam a essencia da plataforma.</div>
+    
+    <div class="concept-grid fade-in">
+      <div class="concept-item">
+        <div class="concept-icon">&#9654;</div>
+        <h3>Seta / Chevron</h3>
+        <p>O recorte angular no lado esquerdo do simbolo forma uma seta apontando para a direita, representando <strong>velocidade</strong>, <strong>movimento para frente</strong> e <strong>aceleracao</strong> — valores centrais do slogan "Less Code. Go Faster."</p>
+      </div>
+      
+      <div class="concept-item">
+        <div class="concept-icon">&#11034;</div>
+        <h3>Peca de Quebra-Cabeca</h3>
+        <p>A forma geral do simbolo e uma peca de puzzle com conectores (tabs) no topo e na lateral direita, simbolizando <strong>modularidade</strong>, <strong>blocos low-code</strong> e <strong>integracao de sistemas</strong> — o core da plataforma Codara.</p>
+      </div>
+      
+      <div class="concept-item">
+        <div class="concept-icon">&#9632;</div>
+        <h3>Geometria Forte</h3>
+        <p>Linhas retas e angulos definidos transmitem <strong>precisao tecnica</strong> e <strong>confiabilidade</strong>. O design flat sem gradientes garante versatilidade e legibilidade em qualquer tamanho ou contexto de aplicacao.</p>
+      </div>
+      
+      <div class="concept-item">
+        <div class="concept-icon">&#9733;</div>
+        <h3>Identidade Distinta</h3>
+        <p>Diferente do Lovable (coracao com gradiente) e de outras marcas do segmento, a Codara utiliza uma <strong>forma unica</strong> que combina puzzle e seta em uma silhueta original, com cor violeta profundo como assinatura.</p>
+      </div>
+    </div>
+    
+    <div class="rationale fade-in">
+      <h3>Sobre a construcao do simbolo</h3>
+      <p>O simbolo da Codara nasce da intersecao entre dois conceitos visuais: a <strong>peca de quebra-cabeca</strong> e a <strong>seta direcional</strong>. A peca de puzzle representa a natureza modular e integravel da plataforma low-code — cada componente se encaixa para formar sistemas completos. A seta, formada pelo recorte angular no lado esquerdo, simboliza a velocidade e o progresso que a plataforma proporciona aos seus usuarios.</p>
+      <p>A fusao desses dois elementos em uma unica forma geometrica cria um simbolo que e simultaneamente reconhecivel como puzzle e como indicador de movimento. Os conectores semicirculares (tabs) no topo e na lateral direita reforcam a leitura de "peca modular", enquanto o vertice angular a esquerda direciona o olhar para frente, transmitindo dinamismo.</p>
+      <p>A cor <strong>Violet Deep (#6C3CE1)</strong> foi escolhida por sua associacao com inovacao, criatividade e tecnologia de ponta, diferenciando a Codara de concorrentes que utilizam azuis corporativos ou gradientes multicoloridos. A tipografia Inter Semibold complementa o simbolo com sua geometria limpa e legibilidade excepcional em interfaces digitais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Paleta -->
+<section id="cores">
+  <div class="container">
+    <div class="section-label fade-in">05 — Paleta de Cores</div>
+    <div class="section-title fade-in">Cores da Marca</div>
+    <div class="section-desc fade-in">A paleta primaria da Codara e construida em torno do Violet Deep, com variacoes para diferentes contextos de uso.</div>
+    
+    <div class="color-row fade-in">
+      <div class="color-swatch" style="background: #6C3CE1; color: white;">
+        <div class="name">Violet Deep</div>
+        <div class="hex">#6C3CE1</div>
+      </div>
+      <div class="color-swatch" style="background: #5429B5; color: white;">
+        <div class="name">Violet Dark</div>
+        <div class="hex">#5429B5</div>
+      </div>
+      <div class="color-swatch" style="background: #9B7AE8; color: white;">
+        <div class="name">Violet Light</div>
+        <div class="hex">#9B7AE8</div>
+      </div>
+      <div class="color-swatch" style="background: #E8E0F7; color: #6C3CE1;">
+        <div class="name">Violet Wash</div>
+        <div class="hex">#E8E0F7</div>
+      </div>
+    </div>
+    
+    <div class="color-row fade-in">
+      <div class="color-swatch" style="background: #0F0F1A; color: white;">
+        <div class="name">Night</div>
+        <div class="hex">#0F0F1A</div>
+      </div>
+      <div class="color-swatch" style="background: #2A2A3A; color: white;">
+        <div class="name">Charcoal</div>
+        <div class="hex">#2A2A3A</div>
+      </div>
+      <div class="color-swatch" style="background: #F8F8FC; color: #2A2A3A; border: 1px solid #EDEDF5;">
+        <div class="name">Snow</div>
+        <div class="hex">#F8F8FC</div>
+      </div>
+      <div class="color-swatch" style="background: #FFFFFF; color: #2A2A3A; border: 1px solid #EDEDF5;">
+        <div class="name">White</div>
+        <div class="hex">#FFFFFF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tipografia -->
+<section id="tipografia">
+  <div class="container">
+    <div class="section-label fade-in">06 — Tipografia</div>
+    <div class="section-title fade-in">Inter</div>
+    <div class="section-desc fade-in">A familia tipografica Inter e utilizada em toda a comunicacao da Codara. Projetada especificamente para interfaces digitais, oferece excelente legibilidade em todos os tamanhos.</div>
+    
+    <div class="fade-in">
+      <div class="type-sample">
+        <div style="font-size: 48px; font-weight: 700; letter-spacing: -0.03em; color: var(--dark);">Codara</div>
+        <div class="type-label">Inter Bold — 700 — Titulos principais</div>
+      </div>
+      
+      <div class="type-sample">
+        <div style="font-size: 36px; font-weight: 600; letter-spacing: -0.02em; color: var(--dark);">Less Code. Go Faster.</div>
+        <div class="type-label">Inter Semibold — 600 — Wordmark e subtitulos</div>
+      </div>
+      
+      <div class="type-sample">
+        <div style="font-size: 18px; font-weight: 400; color: var(--gray-800); line-height: 1.7;">A plataforma de IA low-code que permite construir sistemas mais rapidamente e com menos complexidade.</div>
+        <div class="type-label">Inter Regular — 400 — Corpo de texto</div>
+      </div>
+      
+      <div class="type-sample">
+        <div style="font-size: 14px; font-weight: 300; color: var(--gray-600); line-height: 1.7; letter-spacing: 0.01em;">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</div>
+        <div class="type-label">Inter Light — 300 — Textos auxiliares</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-logo">
+      <svg viewBox="0 0 100 100">
+        <path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#9999AA"/>
+      </svg>
+      <span>Codara</span>
+    </div>
+    Codara Brand Identity — Fevereiro 2026
+  </div>
+</div>
+
+<script>
+// Scroll-based nav shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Intersection Observer for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
