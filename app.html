@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codara — Plataforma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z' fill='%236C3CE1'/%3E%3C/svg%3E">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0C0C16;
+      color: #E0E0E8;
+      line-height: 1.5;
+      overflow: hidden;
+      height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    :root {
+      --violet: #6C3CE1;
+      --violet-dark: #5429B5;
+      --violet-light: #9B7AE8;
+      --violet-glow: rgba(108, 60, 225, 0.15);
+      --bg-primary: #0C0C16;
+      --bg-secondary: #111122;
+      --bg-tertiary: #16162A;
+      --bg-elevated: #1C1C34;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+      --text-primary: #F0F0F5;
+      --text-secondary: #A0A0B8;
+      --text-tertiary: #606078;
+      --success: #22C55E;
+      --warning: #F59E0B;
+      --error: #EF4444;
+      --sidebar-w: 260px;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    input, textarea { font-family: inherit; }
+
+    /* ===== APP LAYOUT ===== */
+    .app { display: flex; height: 100vh; }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-logo svg { width: 28px; height: 28px; }
+    .sidebar-logo span {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .sidebar-toggle {
+      width: 28px; height: 28px;
+      border: none;
+      background: none;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .sidebar-toggle:hover { background: rgba(255,255,255,0.06); color: var(--text-secondary); }
+
+    .workspace-btn {
+      margin: 12px 12px 0;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .workspace-btn:hover { background: rgba(255,255,255,0.06); border-color: var(--border-hover); }
+    .workspace-avatar {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: var(--violet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+    }
+    .workspace-btn .chevron { margin-left: auto; color: var(--text-tertiary); }
+
+    .sidebar-nav {
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
+    .nav-item.active { background: rgba(108, 60, 225, 0.1); color: var(--violet-light); }
+    .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.7; }
+    .nav-item.active svg { opacity: 1; }
+    .nav-item .badge {
+      margin-left: auto;
+      padding: 1px 7px;
+      background: var(--violet);
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 10px;
+    }
+    .nav-item .shortcut {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      background: rgba(255,255,255,0.04);
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .sidebar-section {
+      padding: 0 8px;
+      margin-top: 4px;
+    }
+    .sidebar-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 12px 6px;
+    }
+    .project-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .project-item:hover { background: rgba(255,255,255,0.04); color: var(--text-primary); }
+    .project-item svg { width: 16px; height: 16px; opacity: 0.5; flex-shrink: 0; }
+    .project-status {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .project-status.published { background: var(--success); }
+    .project-status.draft { background: var(--warning); }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .sidebar-invite {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(108, 60, 225, 0.08);
+      border: 1px solid rgba(108, 60, 225, 0.15);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--violet-light);
+      font-weight: 500;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+    .sidebar-invite:hover { background: rgba(108, 60, 225, 0.12); }
+    .sidebar-invite svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .sidebar-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 4px;
+    }
+    .user-avatar {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--violet), var(--violet-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+    }
+    .user-info { flex: 1; min-width: 0; }
+    .user-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .user-plan { font-size: 11px; color: var(--text-tertiary); }
+    .user-settings {
+      width: 28px; height: 28px;
+      border: none;
+      background: none;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .user-settings:hover { background: rgba(255,255,255,0.06); color: var(--text-secondary); }
+
+    /* ===== MAIN CONTENT ===== */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ===== HOME PAGE ===== */
+    .home-page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      padding: 0 24px;
+    }
+    .home-hero {
+      text-align: center;
+      padding-top: 12vh;
+      padding-bottom: 32px;
+      max-width: 700px;
+      width: 100%;
+    }
+    .home-hero h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+    }
+    .home-hero h1 .user-name-hl { color: var(--violet-light); }
+
+    /* Chat Input */
+    .chat-input-wrapper {
+      max-width: 700px;
+      width: 100%;
+      position: relative;
+    }
+    .chat-input-box {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 16px 8px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .chat-input-box:focus-within {
+      border-color: rgba(108, 60, 225, 0.4);
+      box-shadow: 0 0 0 3px rgba(108, 60, 225, 0.1);
+    }
+    .chat-textarea {
+      width: 100%;
+      min-height: 52px;
+      max-height: 200px;
+      background: none;
+      border: none;
+      outline: none;
+      resize: none;
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .chat-textarea::placeholder { color: var(--text-tertiary); }
+    .chat-input-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+    }
+    .chat-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border: none;
+      background: none;
+      color: var(--text-tertiary);
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .chat-action-btn:hover { background: rgba(255,255,255,0.04); color: var(--text-secondary); }
+    .chat-action-btn svg { width: 16px; height: 16px; }
+    .chat-action-btn.active {
+      background: var(--violet);
+      color: white;
+    }
+    .chat-send-btn {
+      margin-left: auto;
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      border: none;
+      background: var(--violet);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      opacity: 0.5;
+    }
+    .chat-send-btn.ready { opacity: 1; }
+    .chat-send-btn:hover { background: var(--violet-dark); }
+    .chat-send-btn svg { width: 16px; height: 16px; }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .quick-action {
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .quick-action:hover {
+      background: rgba(108, 60, 225, 0.08);
+      border-color: rgba(108, 60, 225, 0.2);
+      color: var(--violet-light);
+    }
+
+    /* Tabs */
+    .home-tabs {
+      max-width: 900px;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .tabs-header {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .tab-btn {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--text-secondary); }
+    .tab-btn.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--violet);
+    }
+    .tab-browse {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--violet-light);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .tab-browse:hover { text-decoration: underline; }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      padding-bottom: 40px;
+    }
+    .project-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .project-thumb {
+      height: 160px;
+      background: var(--bg-elevated);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-thumb-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      opacity: 0.15;
+    }
+    .project-thumb .status-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .status-badge.published {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+    }
+    .status-badge.draft {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--warning);
+    }
+    .status-badge.dev {
+      background: rgba(108, 60, 225, 0.15);
+      color: var(--violet-light);
+    }
+    .project-info {
+      padding: 14px 16px;
+    }
+    .project-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .project-meta {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    /* Template Cards */
+    .template-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .template-card:hover {
+      border-color: rgba(108, 60, 225, 0.3);
+      background: rgba(108, 60, 225, 0.04);
+    }
+    .template-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(108, 60, 225, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+    .template-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .template-card p {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      line-height: 1.5;
+    }
+
+    /* ===== EDITOR PAGE ===== */
+    .editor-page {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .editor-page.active { display: flex; }
+    .home-page.active { display: flex; }
+    .home-page { display: none; }
+
+    .editor-topbar {
+      height: 48px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .editor-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+    .editor-breadcrumb a { color: var(--text-tertiary); transition: color 0.2s; }
+    .editor-breadcrumb a:hover { color: var(--text-secondary); }
+    .editor-breadcrumb .current { color: var(--text-primary); font-weight: 600; }
+    .editor-breadcrumb .sep { opacity: 0.3; }
+
+    .preview-controls {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: auto;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 3px;
+    }
+    .preview-device-btn {
+      width: 30px; height: 30px;
+      border: none;
+      background: none;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .preview-device-btn:hover { color: var(--text-secondary); }
+    .preview-device-btn.active { background: rgba(108, 60, 225, 0.15); color: var(--violet-light); }
+    .preview-device-btn svg { width: 16px; height: 16px; }
+
+    .preview-url {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      min-width: 200px;
+    }
+    .preview-url svg { width: 14px; height: 14px; opacity: 0.5; }
+    .preview-url input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .editor-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 16px;
+    }
+    .editor-btn {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .editor-btn:hover { background: rgba(255,255,255,0.04); border-color: var(--border-hover); }
+    .editor-btn svg { width: 14px; height: 14px; }
+    .editor-btn.publish {
+      background: var(--violet);
+      border-color: var(--violet);
+      color: white;
+    }
+    .editor-btn.publish:hover { background: var(--violet-dark); }
+
+    /* Editor Split */
+    .editor-split {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* Chat Panel */
+    .chat-panel {
+      width: 420px;
+      background: var(--bg-primary);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .chat-history {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .chat-history::-webkit-scrollbar { width: 4px; }
+    .chat-history::-webkit-scrollbar-track { background: transparent; }
+    .chat-history::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+    .chat-date {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      padding: 8px 0;
+    }
+
+    .msg { display: flex; gap: 10px; }
+    .msg.user { flex-direction: row-reverse; }
+    .msg-avatar {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .msg-avatar.ai { background: var(--violet); color: white; }
+    .msg-avatar.human { background: rgba(255,255,255,0.08); color: var(--text-secondary); }
+    .msg-content { max-width: 85%; }
+    .msg-bubble {
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .msg.user .msg-bubble {
+      background: var(--violet);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+    .msg.ai .msg-bubble {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      border-bottom-left-radius: 4px;
+    }
+
+    /* AI Task Card */
+    .ai-task-card {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ai-task-header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ai-task-header .task-icon {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: rgba(34, 197, 94, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ai-task-header .task-icon svg { width: 14px; height: 14px; stroke: var(--success); fill: none; stroke-width: 2; }
+    .ai-task-header h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      flex: 1;
+    }
+    .ai-task-header .task-bookmark {
+      background: none;
+      border: none;
+      color: var(--text-tertiary);
+      cursor: pointer;
+    }
+    .ai-task-body {
+      padding: 12px 16px;
+    }
+    .ai-task-body .subtask {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .subtask .check {
+      width: 16px; height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .subtask.done .check {
+      background: var(--success);
+      border-color: var(--success);
+    }
+    .subtask.done .check svg { width: 10px; height: 10px; stroke: white; fill: none; stroke-width: 3; }
+    .subtask.done { color: var(--text-tertiary); text-decoration: line-through; }
+    .ai-task-tabs {
+      display: flex;
+      border-top: 1px solid var(--border);
+    }
+    .ai-task-tab {
+      flex: 1;
+      padding: 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      background: none;
+      border: none;
+      transition: all 0.15s;
+    }
+    .ai-task-tab:hover { color: var(--text-secondary); }
+    .ai-task-tab.active { color: var(--text-primary); background: rgba(255,255,255,0.03); }
+    .msg-actions {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    .msg-action-btn {
+      width: 28px; height: 28px;
+      border: none;
+      background: none;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .msg-action-btn:hover { background: rgba(255,255,255,0.06); color: var(--text-secondary); }
+    .msg-action-btn svg { width: 14px; height: 14px; }
+
+    /* Chat Input (Editor) */
+    .editor-chat-input {
+      padding: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .editor-chat-box {
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .editor-chat-box:focus-within {
+      border-color: rgba(108, 60, 225, 0.4);
+      box-shadow: 0 0 0 3px rgba(108, 60, 225, 0.08);
+    }
+    .editor-chat-box textarea {
+      width: 100%;
+      min-height: 36px;
+      max-height: 120px;
+      background: none;
+      border: none;
+      outline: none;
+      resize: none;
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .editor-chat-box textarea::placeholder { color: var(--text-tertiary); }
+    .editor-chat-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding-top: 6px;
+    }
+
+    /* Preview Panel */
+    .preview-panel {
+      flex: 1;
+      background: #FAFAFA;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .preview-frame {
+      flex: 1;
+      border: none;
+      background: white;
+    }
+    .preview-placeholder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #999;
+    }
+    .preview-placeholder svg { width: 48px; height: 48px; opacity: 0.3; }
+    .preview-placeholder p { font-size: 14px; }
+
+    /* ===== PROJECTS PAGE ===== */
+    .projects-page {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 32px;
+    }
+    .projects-page.active { display: flex; }
+    .projects-page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .projects-page-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .new-project-btn {
+      padding: 8px 18px;
+      background: var(--violet);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .new-project-btn:hover { background: var(--violet-dark); }
+    .new-project-btn svg { width: 16px; height: 16px; }
+
+    /* ===== SETTINGS PAGE ===== */
+    .settings-page {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 32px;
+      max-width: 700px;
+    }
+    .settings-page.active { display: flex; }
+    .settings-page h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 32px;
+    }
+    .settings-section {
+      margin-bottom: 32px;
+    }
+    .settings-section h2 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .settings-field {
+      margin-bottom: 16px;
+    }
+    .settings-field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .settings-field input[type="text"],
+    .settings-field input[type="email"] {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .settings-field input:focus { border-color: rgba(108, 60, 225, 0.4); }
+    .settings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .settings-row .label { font-size: 14px; color: var(--text-primary); }
+    .settings-row .value { font-size: 14px; color: var(--text-tertiary); }
+    .settings-row .btn-sm {
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .settings-row .btn-sm:hover { background: rgba(255,255,255,0.08); }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
+
+    /* ===== PAGE TRANSITIONS ===== */
+    .page { animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg viewBox="0 0 100 100"><path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="#6C3CE1"/></svg>
+          <span>Codara</span>
+        </div>
+        <button class="sidebar-toggle" title="Toggle sidebar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><line x1="6" y1="2" x2="6" y2="14"/></svg>
+        </button>
+      </div>
+
+      <button class="workspace-btn">
+        <div class="workspace-avatar">D</div>
+        <span>Demétrio's Workspace</span>
+        <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5l3 3 3-3"/></svg>
+      </button>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-page="home">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7l7-5 7 5v8a1 1 0 01-1 1H3a1 1 0 01-1-1V7z"/><path d="M6 16V9h6v7"/></svg>
+          Home
+        </button>
+        <button class="nav-item" data-page="projects">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="10" y="2" width="6" height="6" rx="1"/><rect x="2" y="10" width="6" height="6" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg>
+          Projetos
+        </button>
+        <button class="nav-item">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="7"/><path d="M9 6v3l2 2"/></svg>
+          Templates
+          <span class="badge">Novo</span>
+        </button>
+        <button class="nav-item">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M14 14l3 3"/></svg>
+          Buscar
+          <span class="shortcut">⌘K</span>
+        </button>
+        <button class="nav-item">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2a7 7 0 100 14 7 7 0 000-14z"/><path d="M9 6v3"/><circle cx="9" cy="12" r="0.5" fill="currentColor"/></svg>
+          Docs
+        </button>
+      </nav>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Recentes</div>
+        <div class="project-item" data-project="dashboard-vendas">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 10V7"/><path d="M8 10V5"/><path d="M11 10V8"/></svg>
+          Dashboard de Vendas
+          <span class="project-status published"></span>
+        </div>
+        <div class="project-item" data-project="chatbot-suporte">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10a2 2 0 01-2 2H6l-3 3V4a2 2 0 012-2h6a2 2 0 012 2v6z"/></svg>
+          Chatbot de Suporte
+          <span class="project-status draft"></span>
+        </div>
+        <div class="project-item" data-project="api-sentimento">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12"/><path d="M2 8h12"/><path d="M2 12h8"/></svg>
+          API de Sentimento
+          <span class="project-status published"></span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-invite">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg>
+          Convidar equipe — ganhe créditos
+        </div>
+        <div class="sidebar-user">
+          <div class="user-avatar">D</div>
+          <div class="user-info">
+            <div class="user-name">Demétrio</div>
+            <div class="user-plan">Pro Plan</div>
+          </div>
+          <button class="user-settings" data-page="settings" title="Configurações">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><path d="M13.5 8a5.5 5.5 0 01-.3 1.8l1.3 1-1.2 2-1.5-.6a5.5 5.5 0 01-1.6.9L10 14.6H7.6l-.2-1.5a5.5 5.5 0 01-1.6-.9l-1.5.6-1.2-2 1.3-1A5.5 5.5 0 014.1 8a5.5 5.5 0 01.3-1.8l-1.3-1 1.2-2 1.5.6a5.5 5.5 0 011.6-.9L7.6 1.4H10l.2 1.5a5.5 5.5 0 011.6.9l1.5-.6 1.2 2-1.3 1a5.5 5.5 0 01.3 1.8z"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main">
+
+      <!-- HOME PAGE -->
+      <div class="home-page active page" id="homePage">
+        <div class="home-hero">
+          <h1>O que vamos construir hoje, <span class="user-name-hl">Demétrio</span>?</h1>
+          <div class="chat-input-wrapper">
+            <div class="chat-input-box">
+              <textarea class="chat-textarea" placeholder="Descreva o aplicativo, dashboard ou API que você quer criar..." rows="2" id="homeInput"></textarea>
+              <div class="chat-input-actions">
+                <button class="chat-action-btn" title="Anexar arquivo">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg>
+                </button>
+                <button class="chat-action-btn" title="Modo Workspace">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+                  Workspace
+                </button>
+                <button class="chat-action-btn active" title="Modo Plano">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M3 8h10M3 12h6"/></svg>
+                  Plano
+                </button>
+                <button class="chat-action-btn" title="Gravar voz">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="1" width="6" height="9" rx="3"/><path d="M2 7a6 6 0 0012 0"/><path d="M8 13v2"/></svg>
+                </button>
+                <button class="chat-send-btn" title="Enviar" id="homeSendBtn">
+                  <svg viewBox="0 0 16 16" fill="none"><path d="M14 2L2 9l4.5 1.5L10 14l4-12z" fill="white"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="quick-actions">
+              <span class="quick-action">Dashboard de KPIs</span>
+              <span class="quick-action">Chatbot com IA</span>
+              <span class="quick-action">Landing page</span>
+              <span class="quick-action">API REST</span>
+              <span class="quick-action">Sistema de gestão</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-tabs">
+          <div class="tabs-header">
+            <button class="tab-btn active" data-tab="recent">Recentes</button>
+            <button class="tab-btn" data-tab="myprojects">Meus Projetos</button>
+            <button class="tab-btn" data-tab="starred">Favoritos</button>
+            <button class="tab-btn" data-tab="templates">Templates</button>
+            <a href="#" class="tab-browse">Ver todos <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3l4 4-4 4"/></svg></a>
+          </div>
+
+          <!-- Recent Projects Tab -->
+          <div class="tab-content active" id="tab-recent">
+            <div class="projects-grid">
+              <div class="project-card" data-project="dashboard-vendas">
+                <div class="project-thumb">
+                  <div class="project-thumb-content">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><rect x="5" y="5" width="50" height="50" rx="4"/><path d="M15 40V25"/><path d="M25 40V15"/><path d="M35 40V30"/><path d="M45 40V20"/></svg>
+                  </div>
+                  <span class="status-badge published">Publicado</span>
+                </div>
+                <div class="project-info">
+                  <div class="project-name">Dashboard de Vendas</div>
+                  <div class="project-meta">Editado há 2 horas</div>
+                </div>
+              </div>
+              <div class="project-card" data-project="chatbot-suporte">
+                <div class="project-thumb">
+                  <div class="project-thumb-content">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M50 40a4 4 0 01-4 4H18l-8 8V14a4 4 0 014-4h32a4 4 0 014 4v26z"/></svg>
+                  </div>
+                  <span class="status-badge draft">Rascunho</span>
+                </div>
+                <div class="project-info">
+                  <div class="project-name">Chatbot de Suporte</div>
+                  <div class="project-meta">Editado há 1 dia</div>
+                </div>
+              </div>
+              <div class="project-card" data-project="api-sentimento">
+                <div class="project-thumb">
+                  <div class="project-thumb-content">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M10 15h40M10 25h40M10 35h30M10 45h20"/></svg>
+                  </div>
+                  <span class="status-badge published">Publicado</span>
+                </div>
+                <div class="project-info">
+                  <div class="project-name">API de Sentimento</div>
+                  <div class="project-meta">Editado há 3 dias</div>
+                </div>
+              </div>
+              <div class="project-card">
+                <div class="project-thumb">
+                  <div class="project-thumb-content">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><rect x="5" y="5" width="50" height="50" rx="4"/><rect x="10" y="10" width="18" height="12" rx="2"/><rect x="32" y="10" width="18" height="12" rx="2"/><rect x="10" y="26" width="40" height="24" rx="2"/></svg>
+                  </div>
+                  <span class="status-badge dev">Em desenvolvimento</span>
+                </div>
+                <div class="project-info">
+                  <div class="project-name">Portal do Cliente</div>
+                  <div class="project-meta">Editado há 5 dias</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Templates Tab -->
+          <div class="tab-content" id="tab-templates" style="display:none;">
+            <div class="projects-grid">
+              <div class="template-card">
+                <div class="template-icon">📊</div>
+                <h3>Dashboard SaaS</h3>
+                <p>Dashboard completo com métricas, gráficos e tabelas para seu SaaS.</p>
+              </div>
+              <div class="template-card">
+                <div class="template-icon">💬</div>
+                <h3>Chatbot com IA</h3>
+                <p>Chatbot inteligente com NLP, integração a APIs e painel de controle.</p>
+              </div>
+              <div class="template-card">
+                <div class="template-icon">🛒</div>
+                <h3>E-commerce</h3>
+                <p>Loja online com catálogo, carrinho, checkout e painel administrativo.</p>
+              </div>
+              <div class="template-card">
+                <div class="template-icon">📱</div>
+                <h3>Landing Page</h3>
+                <p>Página de captura responsiva com formulário e integração de e-mail.</p>
+              </div>
+              <div class="template-card">
+                <div class="template-icon">🔗</div>
+                <h3>API REST</h3>
+                <p>Backend com endpoints CRUD, autenticação JWT e documentação Swagger.</p>
+              </div>
+              <div class="template-card">
+                <div class="template-icon">📋</div>
+                <h3>Sistema de Gestão</h3>
+                <p>ERP simplificado com módulos de clientes, produtos e financeiro.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDITOR PAGE -->
+      <div class="editor-page page" id="editorPage">
+        <div class="editor-topbar">
+          <div class="editor-breadcrumb">
+            <a href="#" class="back-home">Projetos</a>
+            <span class="sep">/</span>
+            <span class="current" id="editorProjectName">Dashboard de Vendas</span>
+          </div>
+
+          <div class="preview-controls">
+            <button class="preview-device-btn active" title="Desktop">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="2" width="14" height="10" rx="1"/><path d="M4 14h8"/><path d="M6 12v2"/><path d="M10 12v2"/></svg>
+            </button>
+            <button class="preview-device-btn" title="Tablet">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="1" width="10" height="14" rx="1.5"/><path d="M7 13h2"/></svg>
+            </button>
+            <button class="preview-device-btn" title="Mobile">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="1" width="8" height="14" rx="1.5"/><path d="M7 13h2"/></svg>
+            </button>
+          </div>
+
+          <div class="preview-url">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="6"/><path d="M2 7h10"/><path d="M7 1a10 10 0 010 12M7 1a10 10 0 000 12"/></svg>
+            <input type="text" value="app.codara.dev/dashboard-vendas" readonly>
+          </div>
+
+          <div class="editor-actions">
+            <button class="editor-btn">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v12M1 7h12"/></svg>
+              Share
+            </button>
+            <button class="editor-btn">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="3"/><path d="M1 7h3M10 7h3M7 1v3M7 10v3"/></svg>
+              GitHub
+            </button>
+            <button class="editor-btn publish">
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v8M3 5l4-4 4 4"/><path d="M1 10v2a1 1 0 001 1h10a1 1 0 001-1v-2"/></svg>
+              Publicar
+            </button>
+          </div>
+        </div>
+
+        <div class="editor-split">
+          <!-- Chat Panel -->
+          <div class="chat-panel">
+            <div class="chat-history">
+              <div class="chat-date">Hoje, 20 de fev.</div>
+
+              <div class="msg user">
+                <div class="msg-content">
+                  <div class="msg-bubble">Crie um dashboard de KPIs para minha equipe de vendas com métricas de receita, conversão, ticket médio e pipeline.</div>
+                </div>
+                <div class="msg-avatar human">D</div>
+              </div>
+
+              <div class="msg ai">
+                <div class="msg-avatar ai">
+                  <svg viewBox="0 0 100 100" width="14" height="14"><path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="white"/></svg>
+                </div>
+                <div class="msg-content">
+                  <div class="ai-task-card">
+                    <div class="ai-task-header">
+                      <div class="task-icon">
+                        <svg viewBox="0 0 14 14"><path d="M11 4L5.5 9.5 3 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </div>
+                      <h4>Criar Dashboard de Vendas</h4>
+                      <button class="task-bookmark">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 1h8a1 1 0 011 1v11l-5-3-5 3V2a1 1 0 011-1z"/></svg>
+                      </button>
+                    </div>
+                    <div class="ai-task-body">
+                      <div class="subtask done">
+                        <div class="check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        Criar layout do dashboard com grid responsivo
+                      </div>
+                      <div class="subtask done">
+                        <div class="check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        Implementar KPI cards (Receita, Conversão, Ticket Médio)
+                      </div>
+                      <div class="subtask done">
+                        <div class="check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        Adicionar gráficos de pipeline e tendências
+                      </div>
+                      <div class="subtask done">
+                        <div class="check"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        Configurar filtros por período e equipe
+                      </div>
+                    </div>
+                    <div class="ai-task-tabs">
+                      <button class="ai-task-tab">Detalhes</button>
+                      <button class="ai-task-tab active">Preview</button>
+                    </div>
+                  </div>
+                  <div class="msg-actions">
+                    <button class="msg-action-btn" title="Desfazer"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h5a3 3 0 010 6H6"/><path d="M6 4L3 7l3 3"/></svg></button>
+                    <button class="msg-action-btn" title="Curtir"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7V13H2V7h2zm2-1l3-4a1 1 0 011.7.7L10 5h2a1 1 0 011 1.2l-1.5 6A1 1 0 0110.5 13H6V6z"/></svg></button>
+                    <button class="msg-action-btn" title="Copiar"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="8" height="8" rx="1"/><path d="M10 4V3a1 1 0 00-1-1H3a1 1 0 00-1 1v6a1 1 0 001 1h1"/></svg></button>
+                    <button class="msg-action-btn" title="Mais"><svg viewBox="0 0 14 14" fill="currentColor"><circle cx="3" cy="7" r="1"/><circle cx="7" cy="7" r="1"/><circle cx="11" cy="7" r="1"/></svg></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="msg user">
+                <div class="msg-content">
+                  <div class="msg-bubble">Adicione um gráfico de barras comparando as vendas por mês e uma tabela com os top 10 vendedores.</div>
+                </div>
+                <div class="msg-avatar human">D</div>
+              </div>
+
+              <div class="msg ai">
+                <div class="msg-avatar ai">
+                  <svg viewBox="0 0 100 100" width="14" height="14"><path d="M 14 22 L 41 22 C 41 15, 46 10, 52 10 C 58 10, 63 15, 63 22 L 84 22 L 84 42 C 91 42, 96 47, 96 53 C 96 59, 91 64, 84 64 L 84 84 L 14 84 L 14 64 L 36 53 L 14 42 Z" fill="white"/></svg>
+                </div>
+                <div class="msg-content">
+                  <div class="msg-bubble">Pronto! Adicionei o gráfico de barras com comparativo mensal e a tabela de ranking dos top 10 vendedores com métricas de receita, número de deals e taxa de conversão. Você pode ver as alterações no preview ao lado.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="editor-chat-input">
+              <div class="editor-chat-box">
+                <textarea placeholder="Peça alterações à Codara..." rows="1"></textarea>
+                <div class="editor-chat-actions">
+                  <button class="chat-action-btn" title="Anexar arquivo">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M2 8h12"/></svg>
+                  </button>
+                  <button class="chat-action-btn" title="Edição visual">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 1.5l3.5 3.5L5 14.5H1.5V11L11 1.5z"/></svg>
+                    Visual edits
+                  </button>
+                  <button class="chat-action-btn active" title="Modo Plano">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M3 8h10M3 12h6"/></svg>
+                    Plano
+                  </button>
+                  <button class="chat-action-btn" title="Gravar voz">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="1" width="6" height="9" rx="3"/><path d="M2 7a6 6 0 0012 0"/><path d="M8 13v2"/></svg>
+                  </button>
+                  <button class="chat-send-btn" title="Enviar">
+                    <svg viewBox="0 0 16 16" fill="none"><path d="M14 2L2 9l4.5 1.5L10 14l4-12z" fill="white"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview Panel -->
+          <div class="preview-panel">
+            <div class="preview-placeholder" id="previewContent" style="display:none;">
+              <svg viewBox="0 0 48 48" fill="none" stroke="#999" stroke-width="1"><rect x="4" y="4" width="40" height="40" rx="4"/><path d="M12 24h24M12 16h24M12 32h16"/></svg>
+              <p>O preview do seu aplicativo aparecerá aqui</p>
+            </div>
+            <!-- Simulated Dashboard Preview -->
+            <div id="dashboardPreview" style="width:100%;height:100%;background:white;overflow:auto;padding:24px;font-family:'Inter',sans-serif;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+                <div>
+                  <h1 style="font-size:20px;font-weight:700;color:#111;margin:0;">Dashboard de Vendas</h1>
+                  <p style="font-size:13px;color:#888;margin:4px 0 0;">Atualizado há 5 minutos</p>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <select style="padding:6px 12px;border:1px solid #e0e0e0;border-radius:6px;font-size:12px;color:#555;background:white;">
+                    <option>Últimos 30 dias</option>
+                    <option>Últimos 7 dias</option>
+                    <option>Este mês</option>
+                  </select>
+                  <select style="padding:6px 12px;border:1px solid #e0e0e0;border-radius:6px;font-size:12px;color:#555;background:white;">
+                    <option>Todas as equipes</option>
+                    <option>Equipe A</option>
+                    <option>Equipe B</option>
+                  </select>
+                </div>
+              </div>
+              <!-- KPI Cards -->
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+                <div style="background:#f8f8fc;border:1px solid #e8e8f0;border-radius:12px;padding:20px;">
+                  <p style="font-size:12px;color:#888;margin:0;">Receita Total</p>
+                  <p style="font-size:28px;font-weight:700;color:#111;margin:4px 0;letter-spacing:-0.02em;">R$ 847.2K</p>
+                  <p style="font-size:12px;color:#22C55E;margin:0;">↑ 12.5% vs mês anterior</p>
+                </div>
+                <div style="background:#f8f8fc;border:1px solid #e8e8f0;border-radius:12px;padding:20px;">
+                  <p style="font-size:12px;color:#888;margin:0;">Taxa de Conversão</p>
+                  <p style="font-size:28px;font-weight:700;color:#111;margin:4px 0;letter-spacing:-0.02em;">24.8%</p>
+                  <p style="font-size:12px;color:#22C55E;margin:0;">↑ 3.2% vs mês anterior</p>
+                </div>
+                <div style="background:#f8f8fc;border:1px solid #e8e8f0;border-radius:12px;padding:20px;">
+                  <p style="font-size:12px;color:#888;margin:0;">Ticket Médio</p>
+                  <p style="font-size:28px;font-weight:700;color:#111;margin:4px 0;letter-spacing:-0.02em;">R$ 3.420</p>
+                  <p style="font-size:12px;color:#EF4444;margin:0;">↓ 1.8% vs mês anterior</p>
+                </div>
+                <div style="background:#f8f8fc;border:1px solid #e8e8f0;border-radius:12px;padding:20px;">
+                  <p style="font-size:12px;color:#888;margin:0;">Deals no Pipeline</p>
+                  <p style="font-size:28px;font-weight:700;color:#111;margin:4px 0;letter-spacing:-0.02em;">142</p>
+                  <p style="font-size:12px;color:#22C55E;margin:0;">↑ 8 novos esta semana</p>
+                </div>
+              </div>
+              <!-- Charts Row -->
+              <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px;">
+                <div style="background:#f8f8fc;border:1px solid #e8e8f0;border-radius:12px;padding:20px;">
+                  <p style="font-size:14px;font-weight:600;color:#111;margin:0 0 16px;">Vendas por Mês</p>
+                  <div style="display:flex;align-items:flex-end;gap:12px;height:140px;">
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                      <div style="width:100%;background:#6C3CE1;border-radius:4px 4px 0 0;height:60%;opacity:0.6;"></div>
+                      <span style="font-size:10px;color:#888;">Jan</span>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                      <div style="width:100%;background:#6C3CE1;border-radius:4px 4px 0 0;height:75%;opacity:0.7;"></div>
+                      <span style="font-size:10px;color:#888;">Fev</span>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                      <div style="width:100%;background:#6C3CE1;border-radius:4px 4px 0 0;height:50%;opacity:0.5;"></div>
+                      <span style="font-size:10px;color:#888;">Mar</span>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                      <div style="width:100%;background:#6C3CE1;border-radius:4px 4px 0 0;height:85%;opacity:0.8;"></div>
+                      <span style="font-size:10px;color:#888;">Abr</span>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                      <div style="width:100%;background:#6C3CE1;border-radius:4px 4px 0 0;height:90%;opacity:0.85;"></div>
+                      <span style="font-size:10px;color:#888;">Mai</span>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                      <div style="width:100%;background:#6C3CE1;border-radius:4px 4px 0 0;height:100%;"></div>
+                      <span style="font-size:10px;color:#888;">Jun</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="background:#f8f8fc;border:1px solid #e8e8f0;border-radius:12px;padding:20px;">
+                  <p style="font-size:14px;font-weight:600;color:#111;margin:0 0 16px;">Pipeline</p>
+                  <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div><div style="display:flex;justify-content:space-between;font-size:12px;color:#555;margin-bottom:4px;"><span>Prospecção</span><span>45</span></div><div style="height:6px;background:#e8e8f0;border-radius:3px;"><div style="height:100%;width:70%;background:#6C3CE1;border-radius:3px;opacity:0.4;"></div></div></div>
+                    <div><div style="display:flex;justify-content:space-between;font-size:12px;color:#555;margin-bottom:4px;"><span>Qualificação</span><span>38</span></div><div style="height:6px;background:#e8e8f0;border-radius:3px;"><div style="height:100%;width:55%;background:#6C3CE1;border-radius:3px;opacity:0.6;"></div></div></div>
+                    <div><div style="display:flex;justify-content:space-between;font-size:12px;color:#555;margin-bottom:4px;"><span>Proposta</span><span>32</span></div><div style="height:6px;background:#e8e8f0;border-radius:3px;"><div style="height:100%;width:45%;background:#6C3CE1;border-radius:3px;opacity:0.8;"></div></div></div>
+                    <div><div style="display:flex;justify-content:space-between;font-size:12px;color:#555;margin-bottom:4px;"><span>Negociação</span><span>18</span></div><div style="height:6px;background:#e8e8f0;border-radius:3px;"><div style="height:100%;width:30%;background:#6C3CE1;border-radius:3px;"></div></div></div>
+                    <div><div style="display:flex;justify-content:space-between;font-size:12px;color:#555;margin-bottom:4px;"><span>Fechamento</span><span>9</span></div><div style="height:6px;background:#e8e8f0;border-radius:3px;"><div style="height:100%;width:15%;background:#22C55E;border-radius:3px;"></div></div></div>
+                  </div>
+                </div>
+              </div>
+              <!-- Top Sellers Table -->
+              <div style="background:#f8f8fc;border:1px solid #e8e8f0;border-radius:12px;padding:20px;">
+                <p style="font-size:14px;font-weight:600;color:#111;margin:0 0 16px;">Top 10 Vendedores</p>
+                <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                  <thead>
+                    <tr style="border-bottom:1px solid #e8e8f0;">
+                      <th style="text-align:left;padding:8px 12px;color:#888;font-weight:500;">#</th>
+                      <th style="text-align:left;padding:8px 12px;color:#888;font-weight:500;">Vendedor</th>
+                      <th style="text-align:right;padding:8px 12px;color:#888;font-weight:500;">Receita</th>
+                      <th style="text-align:right;padding:8px 12px;color:#888;font-weight:500;">Deals</th>
+                      <th style="text-align:right;padding:8px 12px;color:#888;font-weight:500;">Conversão</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom:1px solid #f0f0f5;"><td style="padding:10px 12px;color:#555;">1</td><td style="padding:10px 12px;color:#111;font-weight:500;">Ana Silva</td><td style="padding:10px 12px;text-align:right;color:#111;">R$ 124.5K</td><td style="padding:10px 12px;text-align:right;color:#555;">28</td><td style="padding:10px 12px;text-align:right;color:#22C55E;">32%</td></tr>
+                    <tr style="border-bottom:1px solid #f0f0f5;"><td style="padding:10px 12px;color:#555;">2</td><td style="padding:10px 12px;color:#111;font-weight:500;">Carlos Mendes</td><td style="padding:10px 12px;text-align:right;color:#111;">R$ 98.3K</td><td style="padding:10px 12px;text-align:right;color:#555;">22</td><td style="padding:10px 12px;text-align:right;color:#22C55E;">28%</td></tr>
+                    <tr style="border-bottom:1px solid #f0f0f5;"><td style="padding:10px 12px;color:#555;">3</td><td style="padding:10px 12px;color:#111;font-weight:500;">Juliana Costa</td><td style="padding:10px 12px;text-align:right;color:#111;">R$ 87.1K</td><td style="padding:10px 12px;text-align:right;color:#555;">19</td><td style="padding:10px 12px;text-align:right;color:#22C55E;">26%</td></tr>
+                    <tr style="border-bottom:1px solid #f0f0f5;"><td style="padding:10px 12px;color:#555;">4</td><td style="padding:10px 12px;color:#111;font-weight:500;">Rafael Santos</td><td style="padding:10px 12px;text-align:right;color:#111;">R$ 76.8K</td><td style="padding:10px 12px;text-align:right;color:#555;">17</td><td style="padding:10px 12px;text-align:right;color:#22C55E;">24%</td></tr>
+                    <tr><td style="padding:10px 12px;color:#555;">5</td><td style="padding:10px 12px;color:#111;font-weight:500;">Mariana Lima</td><td style="padding:10px 12px;text-align:right;color:#111;">R$ 65.2K</td><td style="padding:10px 12px;text-align:right;color:#555;">15</td><td style="padding:10px 12px;text-align:right;color:#22C55E;">22%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS PAGE -->
+      <div class="projects-page page" id="projectsPage">
+        <div class="projects-page-header">
+          <h1>Todos os Projetos</h1>
+          <button class="new-project-btn" id="newProjectBtn">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v12M2 8h12"/></svg>
+            Novo Projeto
+          </button>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card" data-project="dashboard-vendas">
+            <div class="project-thumb"><div class="project-thumb-content"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><rect x="5" y="5" width="50" height="50" rx="4"/><path d="M15 40V25"/><path d="M25 40V15"/><path d="M35 40V30"/><path d="M45 40V20"/></svg></div><span class="status-badge published">Publicado</span></div>
+            <div class="project-info"><div class="project-name">Dashboard de Vendas</div><div class="project-meta">Editado há 2 horas</div></div>
+          </div>
+          <div class="project-card" data-project="chatbot-suporte">
+            <div class="project-thumb"><div class="project-thumb-content"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M50 40a4 4 0 01-4 4H18l-8 8V14a4 4 0 014-4h32a4 4 0 014 4v26z"/></svg></div><span class="status-badge draft">Rascunho</span></div>
+            <div class="project-info"><div class="project-name">Chatbot de Suporte</div><div class="project-meta">Editado há 1 dia</div></div>
+          </div>
+          <div class="project-card" data-project="api-sentimento">
+            <div class="project-thumb"><div class="project-thumb-content"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><path d="M10 15h40M10 25h40M10 35h30M10 45h20"/></svg></div><span class="status-badge published">Publicado</span></div>
+            <div class="project-info"><div class="project-name">API de Sentimento</div><div class="project-meta">Editado há 3 dias</div></div>
+          </div>
+          <div class="project-card">
+            <div class="project-thumb"><div class="project-thumb-content"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1"><rect x="5" y="5" width="50" height="50" rx="4"/><rect x="10" y="10" width="18" height="12" rx="2"/><rect x="32" y="10" width="18" height="12" rx="2"/><rect x="10" y="26" width="40" height="24" rx="2"/></svg></div><span class="status-badge dev">Em desenvolvimento</span></div>
+            <div class="project-info"><div class="project-name">Portal do Cliente</div><div class="project-meta">Editado há 5 dias</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS PAGE -->
+      <div class="settings-page page" id="settingsPage">
+        <h1>Configurações</h1>
+        <div class="settings-section">
+          <h2>Perfil</h2>
+          <div class="settings-field">
+            <label>Nome</label>
+            <input type="text" value="Demétrio Freitas">
+          </div>
+          <div class="settings-field">
+            <label>E-mail</label>
+            <input type="email" value="demetrio@codara.dev">
+          </div>
+        </div>
+        <div class="settings-section">
+          <h2>Workspace</h2>
+          <div class="settings-row">
+            <span class="label">Nome do Workspace</span>
+            <span class="value">Demétrio's Workspace</span>
+            <button class="btn-sm">Editar</button>
+          </div>
+          <div class="settings-row">
+            <span class="label">Membros</span>
+            <span class="value">1 membro</span>
+            <button class="btn-sm">Gerenciar</button>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h2>Plano e Faturamento</h2>
+          <div class="settings-row">
+            <span class="label">Plano atual</span>
+            <span class="value" style="color:#6C3CE1;font-weight:600;">Pro — $25/mês</span>
+            <button class="btn-sm">Alterar</button>
+          </div>
+          <div class="settings-row">
+            <span class="label">Créditos restantes</span>
+            <span class="value">847 créditos</span>
+          </div>
+          <div class="settings-row">
+            <span class="label">Próxima cobrança</span>
+            <span class="value">15 de março, 2026</span>
+          </div>
+        </div>
+        <div class="settings-section">
+          <h2>Integrações</h2>
+          <div class="settings-row">
+            <span class="label">GitHub</span>
+            <span class="value" style="color:#22C55E;">Conectado</span>
+            <button class="btn-sm">Desconectar</button>
+          </div>
+          <div class="settings-row">
+            <span class="label">Vercel</span>
+            <span class="value">Não conectado</span>
+            <button class="btn-sm" style="background:rgba(108,60,225,0.1);border-color:rgba(108,60,225,0.2);color:#9B7AE8;">Conectar</button>
+          </div>
+          <div class="settings-row">
+            <span class="label">Supabase</span>
+            <span class="value">Não conectado</span>
+            <button class="btn-sm" style="background:rgba(108,60,225,0.1);border-color:rgba(108,60,225,0.2);color:#9B7AE8;">Conectar</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // Navigation
+    const pages = {
+      home: document.getElementById('homePage'),
+      editor: document.getElementById('editorPage'),
+      projects: document.getElementById('projectsPage'),
+      settings: document.getElementById('settingsPage')
+    };
+
+    function showPage(pageId) {
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages[pageId]) pages[pageId].classList.add('active');
+      // Update nav
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      const navBtn = document.querySelector(`.nav-item[data-page="${pageId}"]`);
+      if (navBtn) navBtn.classList.add('active');
+    }
+
+    // Nav items
+    document.querySelectorAll('.nav-item[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => showPage(btn.dataset.page));
+    });
+
+    // Settings button
+    document.querySelector('.user-settings[data-page="settings"]').addEventListener('click', () => showPage('settings'));
+
+    // Project cards -> Editor
+    document.querySelectorAll('.project-card[data-project], .project-item[data-project]').forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.querySelector('.project-name')?.textContent || card.textContent.trim();
+        document.getElementById('editorProjectName').textContent = name;
+        showPage('editor');
+      });
+    });
+
+    // Back to home from editor
+    document.querySelector('.back-home').addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('home');
+    });
+
+    // New project button
+    document.getElementById('newProjectBtn')?.addEventListener('click', () => showPage('home'));
+
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+        const tabId = `tab-${btn.dataset.tab}`;
+        const tabContent = document.getElementById(tabId);
+        if (tabContent) tabContent.style.display = 'block';
+      });
+    });
+
+    // Chat input send button activation
+    const homeInput = document.getElementById('homeInput');
+    const homeSendBtn = document.getElementById('homeSendBtn');
+    homeInput.addEventListener('input', () => {
+      homeSendBtn.classList.toggle('ready', homeInput.value.trim().length > 0);
+    });
+
+    // Quick actions
+    document.querySelectorAll('.quick-action').forEach(qa => {
+      qa.addEventListener('click', () => {
+        homeInput.value = qa.textContent;
+        homeInput.dispatchEvent(new Event('input'));
+        homeInput.focus();
+      });
+    });
+
+    // Send from home -> go to editor
+    homeSendBtn.addEventListener('click', () => {
+      if (homeInput.value.trim()) {
+        document.getElementById('editorProjectName').textContent = 'Novo Projeto';
+        showPage('editor');
+      }
+    });
+
+    // Start on home
+    showPage('home');
+  </script>
+</body>
+</html>
